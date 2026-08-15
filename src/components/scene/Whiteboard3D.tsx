@@ -1,18 +1,49 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-export const Whiteboard3D: React.FC = () => {
+interface Whiteboard3DProps {
+  onClick?: () => void;
+  isFocused?: boolean;
+}
+
+export const Whiteboard3D: React.FC<Whiteboard3DProps> = ({ onClick, isFocused = false }) => {
+  const [hovered, setHovered] = useState(false);
+
   return (
-    <group position={[0, 2.3, -2.95]}>
+    <group
+      position={[0, 2.3, -2.95]}
+      onClick={(e) => {
+        e.stopPropagation();
+        if (onClick) onClick();
+      }}
+      onPointerOver={(e) => {
+        e.stopPropagation();
+        setHovered(true);
+        document.body.style.cursor = 'pointer';
+      }}
+      onPointerOut={() => {
+        setHovered(false);
+        document.body.style.cursor = 'auto';
+      }}
+    >
       {/* Outer Silver Aluminum Frame */}
       <mesh castShadow receiveShadow>
         <boxGeometry args={[2.2, 1.2, 0.03]} />
-        <meshStandardMaterial color="#33373E" roughness={0.4} metalness={0.7} />
+        <meshStandardMaterial
+          color={isFocused ? '#65B8FF' : hovered ? '#404550' : '#33373E'}
+          roughness={0.4}
+          metalness={0.7}
+        />
       </mesh>
 
       {/* Off-White Board Surface (#DDD7CB) */}
       <mesh position={[0, 0, 0.018]}>
         <planeGeometry args={[2.12, 1.12]} />
-        <meshStandardMaterial color="#DDD7CB" roughness={0.3} />
+        <meshStandardMaterial
+          color="#DDD7CB"
+          emissive={hovered || isFocused ? '#65B8FF' : '#000000'}
+          emissiveIntensity={isFocused ? 0.15 : hovered ? 0.08 : 0}
+          roughness={0.3}
+        />
       </mesh>
 
       {/* Silver Aluminum Marker Tray */}

@@ -1,12 +1,40 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-export const ServerRack3D: React.FC = () => {
+interface ServerRack3DProps {
+  onClick?: () => void;
+  isFocused?: boolean;
+}
+
+export const ServerRack3D: React.FC<ServerRack3DProps> = ({ onClick, isFocused = false }) => {
+  const [hovered, setHovered] = useState(false);
+
   return (
-    <group position={[-1.8, 0.4, -0.2]}>
+    <group
+      position={[-1.8, 0.4, -0.2]}
+      onClick={(e) => {
+        e.stopPropagation();
+        if (onClick) onClick();
+      }}
+      onPointerOver={(e) => {
+        e.stopPropagation();
+        setHovered(true);
+        document.body.style.cursor = 'pointer';
+      }}
+      onPointerOut={() => {
+        setHovered(false);
+        document.body.style.cursor = 'auto';
+      }}
+    >
       {/* Outer Metal Server Chassis Mesh (#141618) */}
       <mesh castShadow receiveShadow>
         <boxGeometry args={[0.55, 0.8, 0.65]} />
-        <meshStandardMaterial color="#141618" roughness={0.5} metalness={0.7} />
+        <meshStandardMaterial
+          color={isFocused ? '#65B8FF' : hovered ? '#20242B' : '#141618'}
+          emissive={hovered || isFocused ? '#65B8FF' : '#000000'}
+          emissiveIntensity={isFocused ? 0.2 : hovered ? 0.1 : 0}
+          roughness={0.5}
+          metalness={0.7}
+        />
       </mesh>
 
       {/* Front Panel Inset */}

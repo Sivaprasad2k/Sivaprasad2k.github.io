@@ -1,23 +1,52 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 interface ProjectBook3DProps {
+  id: string;
   title: string;
   position: [number, number, number];
   rotation?: [number, number, number];
   isStanding?: boolean;
+  onClick?: () => void;
+  isFocused?: boolean;
 }
 
 export const ProjectBook3D: React.FC<ProjectBook3DProps> = ({
   position,
   rotation = [0, 0, 0],
-  isStanding = true
+  isStanding = true,
+  onClick,
+  isFocused = false
 }) => {
+  const [hovered, setHovered] = useState(false);
+
   return (
-    <group position={position} rotation={rotation}>
-      {/* Dark Graphite Cover Mesh (#181A1D) */}
+    <group
+      position={position}
+      rotation={rotation}
+      onClick={(e) => {
+        e.stopPropagation();
+        if (onClick) onClick();
+      }}
+      onPointerOver={(e) => {
+        e.stopPropagation();
+        setHovered(true);
+        document.body.style.cursor = 'pointer';
+      }}
+      onPointerOut={() => {
+        setHovered(false);
+        document.body.style.cursor = 'auto';
+      }}
+    >
+      {/* Dark Graphite Cover Mesh (#181A1D) with Hover/Focus Glow */}
       <mesh castShadow receiveShadow>
         <boxGeometry args={isStanding ? [0.06, 0.32, 0.22] : [0.28, 0.05, 0.20]} />
-        <meshStandardMaterial color="#181A1D" roughness={0.6} metalness={0.1} />
+        <meshStandardMaterial
+          color={isFocused ? '#65B8FF' : hovered ? '#252930' : '#181A1D'}
+          emissive={hovered || isFocused ? '#65B8FF' : '#000000'}
+          emissiveIntensity={isFocused ? 0.35 : hovered ? 0.2 : 0}
+          roughness={0.5}
+          metalness={0.1}
+        />
       </mesh>
 
       {/* Dark Spine Strip (#25282D) */}

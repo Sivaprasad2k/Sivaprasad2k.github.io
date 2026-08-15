@@ -1,12 +1,38 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-export const PhoneDock3D: React.FC = () => {
+interface PhoneDock3DProps {
+  onClick?: () => void;
+  isFocused?: boolean;
+}
+
+export const PhoneDock3D: React.FC<PhoneDock3DProps> = ({ onClick, isFocused = false }) => {
+  const [hovered, setHovered] = useState(false);
+
   return (
-    <group position={[1.6, 1.45, -0.5]}>
+    <group
+      position={[1.6, 1.45, -0.5]}
+      onClick={(e) => {
+        e.stopPropagation();
+        if (onClick) onClick();
+      }}
+      onPointerOver={(e) => {
+        e.stopPropagation();
+        setHovered(true);
+        document.body.style.cursor = 'pointer';
+      }}
+      onPointerOut={() => {
+        setHovered(false);
+        document.body.style.cursor = 'auto';
+      }}
+    >
       {/* Heavy Desktop Phone Dock Stand Base */}
       <mesh position={[0, 0.02, 0]} castShadow receiveShadow>
         <boxGeometry args={[0.16, 0.04, 0.16]} />
-        <meshStandardMaterial color="#1C2026" roughness={0.5} metalness={0.6} />
+        <meshStandardMaterial
+          color={isFocused ? '#7EE2A8' : hovered ? '#252D36' : '#1C2026'}
+          roughness={0.5}
+          metalness={0.6}
+        />
       </mesh>
 
       {/* Smartphone Body Mesh (Tilted back at 75deg) */}
@@ -22,7 +48,7 @@ export const PhoneDock3D: React.FC = () => {
           <meshStandardMaterial
             color="#060709"
             emissive="#38BDF8"
-            emissiveIntensity={0.2}
+            emissiveIntensity={hovered || isFocused ? 0.4 : 0.2}
             roughness={0.2}
           />
         </mesh>

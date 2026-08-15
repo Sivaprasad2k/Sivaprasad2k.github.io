@@ -1,12 +1,38 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-export const Laptop3D: React.FC = () => {
+interface Laptop3DProps {
+  onClick?: () => void;
+  isFocused?: boolean;
+}
+
+export const Laptop3D: React.FC<Laptop3DProps> = ({ onClick, isFocused = false }) => {
+  const [hovered, setHovered] = useState(false);
+
   return (
-    <group position={[0, 1.16, -0.1]}>
+    <group
+      position={[0, 1.16, -0.1]}
+      onClick={(e) => {
+        e.stopPropagation();
+        if (onClick) onClick();
+      }}
+      onPointerOver={(e) => {
+        e.stopPropagation();
+        setHovered(true);
+        document.body.style.cursor = 'pointer';
+      }}
+      onPointerOut={() => {
+        setHovered(false);
+        document.body.style.cursor = 'auto';
+      }}
+    >
       {/* Keyboard Base Deck (#181B20 Dark Graphite Metallic) */}
       <mesh position={[0, 0.01, 0.1]} castShadow receiveShadow>
         <boxGeometry args={[0.75, 0.02, 0.5]} />
-        <meshStandardMaterial color="#181B20" roughness={0.4} metalness={0.7} />
+        <meshStandardMaterial
+          color={isFocused ? '#65B8FF' : hovered ? '#20242B' : '#181B20'}
+          roughness={0.4}
+          metalness={0.7}
+        />
       </mesh>
 
       {/* Trackpad Notch */}
@@ -34,13 +60,13 @@ export const Laptop3D: React.FC = () => {
           <meshStandardMaterial
             color="#060709"
             emissive="#10B981"
-            emissiveIntensity={0.15}
+            emissiveIntensity={hovered || isFocused ? 0.35 : 0.15}
             roughness={0.2}
           />
         </mesh>
 
         {/* Soft Cool Screen Glow Point Light */}
-        <pointLight position={[0, 0.2, 0.15]} intensity={1.2} distance={2.5} color="#10B981" />
+        <pointLight position={[0, 0.2, 0.15]} intensity={hovered ? 2.0 : 1.2} distance={2.5} color="#10B981" />
       </group>
     </group>
   );
