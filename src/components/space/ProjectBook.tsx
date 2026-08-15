@@ -40,10 +40,10 @@ export const ProjectBook: React.FC<ProjectBookProps> = ({
       <div className={`w-full h-full bg-[#121417] border-2 rounded-r-md p-2 flex flex-col justify-between relative overflow-hidden transition-all duration-300 shadow-2xl ${
         isFocused
           ? 'border-[#65B8FF] ring-4 ring-[#65B8FF]/30'
-          : 'border-[#2B1E17] group-hover:border-[#65B8FF]/70'
+          : 'border-[#2A1D17] group-hover:border-[#65B8FF]/70'
       }`}>
         {/* Book Spine Overlay Line */}
-        <div className="absolute left-0 top-0 bottom-0 w-2 bg-[#1C2026] border-r border-[#2B1E17]" />
+        <div className="absolute left-0 top-0 bottom-0 w-2 bg-[#1C2026] border-r border-[#2A1D17]" />
 
         {/* Page Edges Visual Texture */}
         <div className="absolute right-0 top-1 bottom-1 w-1 bg-[#E8E2D6]/40 rounded-r-sm" />

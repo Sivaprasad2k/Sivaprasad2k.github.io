@@ -40,7 +40,7 @@ export const ROOM_OBJECTS_DATA: RoomObjectDefinition[] = [
     categoryLabel: 'IDENTITY',
     subtitle: 'Siva Prasad M L · Backend Engineer',
     layer: 2,
-    position: { x: 14, y: 16, rotation: 0 },
+    position: { x: 14, y: 15, rotation: 0 },
     interactive: true,
     metaphorResponse: 'Overhead picture lamp illuminates → Profile panel'
   },

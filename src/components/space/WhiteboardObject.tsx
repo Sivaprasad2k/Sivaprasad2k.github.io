@@ -21,7 +21,7 @@ export const WhiteboardObject: React.FC<WhiteboardObjectProps> = ({
       role="button"
       aria-label="Whiteboard - How I Think Engineering Principles"
       onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onClick(); } }}
-      className={`absolute left-[45%] -translate-x-1/2 top-[14%] w-[340px] h-[200px] bg-[#DDD7CB] border-4 rounded-md p-4 flex flex-col justify-between transition-all duration-300 cursor-pointer z-20 group shadow-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#65B8FF] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0B0D10] ${
+      className={`absolute left-[45%] -translate-x-1/2 top-[14%] w-[360px] h-[210px] bg-[#DDD7CB] border-4 rounded-md p-4 flex flex-col justify-between transition-all duration-300 cursor-pointer z-20 group shadow-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#65B8FF] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0B0D10] ${
         isFocused
           ? 'border-[#65B8FF] ring-4 ring-[#65B8FF]/30 scale-105'
           : 'border-[#33373E] hover:border-[#65B8FF]/70 hover:scale-[1.02]'
@@ -57,7 +57,7 @@ export const WhiteboardObject: React.FC<WhiteboardObjectProps> = ({
       </div>
 
       {/* Silver Aluminum Tray with Markers */}
-      <div className="w-40 mx-auto h-2 bg-[#25282D] rounded-t-sm flex items-center justify-end px-2 gap-1.5 -mb-2 shadow-inner">
+      <div className="w-44 mx-auto h-2 bg-[#25282D] rounded-t-sm flex items-center justify-end px-2 gap-1.5 -mb-2 shadow-inner">
         <span className="w-5 h-1 bg-black rounded-full" />
         <span className="w-5 h-1 bg-blue-700 rounded-full" />
         <span className="w-5 h-1 bg-red-700 rounded-full" />

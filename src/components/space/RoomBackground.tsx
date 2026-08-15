@@ -31,9 +31,9 @@ export const RoomBackground: React.FC<RoomBackgroundProps> = ({ parallaxX, paral
         />
       </div>
 
-      {/* Layer 1: Back Wall Surface (#111316 Matte Graphite Charcoal) */}
+      {/* Layer 1: Back Wall Surface (#121417 Matte Graphite Charcoal) */}
       <div 
-        className="absolute inset-x-0 top-0 h-[68%] bg-[#111316] border-b-2 border-[#1A1D22] transition-transform duration-300 ease-out shadow-inner"
+        className="absolute inset-x-0 top-0 h-[68%] bg-[#121417] border-b-2 border-[#1A1D22] transition-transform duration-300 ease-out shadow-inner"
         style={{
           transform: `translate3d(${parallaxX * 0.10}px, ${parallaxY * 0.10}px, 0)`
         }}
