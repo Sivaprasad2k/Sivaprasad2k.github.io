@@ -24,7 +24,7 @@ import { ServerRack3D } from './ServerRack3D';
 interface SivasSpaceSceneProps {
   onFocusObject: (obj: RoomObjectDefinition) => void;
   activeObjectId: RoomObjectType | null;
-  debugMode?: 'env' | 'furniture' | 'objects' | 'lighting' | 'full' | null;
+  debugMode?: 'env' | 'furniture' | 'objects' | 'lighting' | 'assets' | 'full' | null;
 }
 
 const OBJECT_CAMERA_TARGETS: Record<RoomObjectType, { position: [number, number, number]; target: [number, number, number] }> = {
@@ -50,13 +50,13 @@ function SceneContent({ onFocusObject, activeObjectId, debugMode }: SivasSpaceSc
 
   const getObjectDef = (id: RoomObjectType) => ROOM_OBJECTS_DATA.find(o => o.id === id)!;
 
-  // Determine active debug mode from prop or URL parameter (?debug=env, ?debug=furniture, ?debug=objects, ?debug=lighting)
+  // Determine active debug mode from prop or URL parameter (?debug=env, ?debug=furniture, ?debug=objects, ?debug=lighting, ?debug=assets)
   const urlParams = typeof window !== 'undefined' ? new URLSearchParams(window.location.search) : null;
-  const activeDebugParam = debugMode || (urlParams ? (urlParams.get('debug') as 'env' | 'furniture' | 'objects' | 'lighting') : null);
+  const activeDebugParam = debugMode || (urlParams ? (urlParams.get('debug') as 'env' | 'furniture' | 'objects' | 'lighting' | 'assets') : null);
 
   const isLightingDebug = activeDebugParam === 'lighting';
-  const showRoom = activeDebugParam !== 'objects';
-  const showFurniture = activeDebugParam !== 'objects';
+  const showRoom = activeDebugParam !== 'objects' && activeDebugParam !== 'assets';
+  const showFurniture = activeDebugParam !== 'objects' && activeDebugParam !== 'assets';
   const showPortfolioObjects = activeDebugParam !== 'env' && activeDebugParam !== 'furniture';
 
   return (

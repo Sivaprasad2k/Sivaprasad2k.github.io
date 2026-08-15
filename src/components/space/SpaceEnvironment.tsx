@@ -5,7 +5,7 @@ import { SivasSpaceScene } from '../scene/SivasSpaceScene';
 interface SpaceEnvironmentProps {
   onFocusObject: (obj: RoomObjectDefinition) => void;
   activeObjectId: RoomObjectType | null;
-  debugMode?: 'env' | 'furniture' | 'objects' | 'full' | null;
+  debugMode?: 'env' | 'furniture' | 'objects' | 'lighting' | 'assets' | 'full' | null;
 }
 
 export const SpaceEnvironment: React.FC<SpaceEnvironmentProps> = ({

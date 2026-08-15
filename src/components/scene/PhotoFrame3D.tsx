@@ -25,38 +25,58 @@ export const PhotoFrame3D: React.FC<PhotoFrame3DProps> = ({ onClick, isFocused =
         document.body.style.cursor = 'auto';
       }}
     >
-      {/* Black Outer Picture Frame */}
-      <mesh castShadow receiveShadow>
-        <boxGeometry args={[0.7, 0.9, 0.03]} />
+      {/* Wall Contact Shadow */}
+      <mesh position={[0, 0, 0.002]}>
+        <planeGeometry args={[0.9, 1.1]} />
+        <meshStandardMaterial color="#000000" transparent opacity={0.4} roughness={1.0} />
+      </mesh>
+
+      {/* Outer Beveled Wood Frame (#28241E) */}
+      <mesh castShadow receiveShadow position={[0, 0, 0.015]}>
+        <boxGeometry args={[0.84, 1.04, 0.03]} />
         <meshStandardMaterial
-          color={isFocused ? '#65B8FF' : hovered ? '#1A1D24' : '#121315'}
-          emissive={hovered || isFocused ? '#65B8FF' : '#000000'}
-          emissiveIntensity={isFocused ? 0.25 : hovered ? 0.15 : 0}
+          color={isFocused ? '#65B8FF' : hovered ? '#38322B' : '#28241E'}
           roughness={0.5}
           metalness={0.2}
         />
       </mesh>
 
-      {/* White Matting Canvas */}
-      <mesh position={[0, 0, 0.018]}>
+      {/* Inner Off-White Matting Canvas (#E5DFD5) */}
+      <mesh position={[0, 0, 0.031]}>
+        <planeGeometry args={[0.74, 0.94]} />
+        <meshStandardMaterial color="#E5DFD5" roughness={0.8} />
+      </mesh>
+
+      {/* Portrait Photograph Image Canvas (#1A1E24) */}
+      <mesh position={[0, 0, 0.032]}>
         <planeGeometry args={[0.62, 0.82]} />
-        <meshStandardMaterial color="#0A0B0D" roughness={0.9} />
+        <meshStandardMaterial
+          color="#1A1E24"
+          emissive={hovered || isFocused ? '#65B8FF' : '#000000'}
+          emissiveIntensity={isFocused ? 0.15 : hovered ? 0.08 : 0}
+          roughness={0.3}
+        />
       </mesh>
 
-      {/* Inner Portrait Label Container */}
-      <mesh position={[0, -0.05, 0.02]}>
-        <planeGeometry args={[0.48, 0.55]} />
-        <meshStandardMaterial color="#171A20" roughness={0.7} />
+      {/* Abstract Portrait Silhouette Representation */}
+      <mesh position={[0, 0.08, 0.033]}>
+        <sphereGeometry args={[0.15, 32, 32]} />
+        <meshStandardMaterial color="#3A404A" roughness={0.7} />
+      </mesh>
+      <mesh position={[0, -0.22, 0.033]}>
+        <boxGeometry args={[0.42, 0.34, 0.01]} />
+        <meshStandardMaterial color="#222730" roughness={0.7} />
       </mesh>
 
-      {/* Overhead Picture Lamp Brass Fixture */}
-      <group position={[0, 0.48, 0.06]}>
-        <mesh castShadow>
-          <cylinderGeometry args={[0.015, 0.015, 0.4, 16]} rotation-z={Math.PI / 2} />
-          <meshStandardMaterial color="#202328" roughness={0.3} metalness={0.8} />
-        </mesh>
-        <pointLight position={[0, -0.05, 0.05]} intensity={hovered ? 2.5 : 1.5} distance={1.8} color="#FFE5B4" />
-      </group>
+      {/* Overhead Brass Picture Light Fixture Assembly */}
+      <mesh position={[0, 0.56, 0.08]} castShadow>
+        <boxGeometry args={[0.45, 0.03, 0.06]} />
+        <meshStandardMaterial color="#3A3226" roughness={0.3} metalness={0.8} />
+      </mesh>
+      <mesh position={[0, 0.54, 0.04]} rotation-x={0.3} castShadow>
+        <cylinderGeometry args={[0.008, 0.008, 0.08, 16]} />
+        <meshStandardMaterial color="#3A3226" roughness={0.3} metalness={0.8} />
+      </mesh>
     </group>
   );
 };
