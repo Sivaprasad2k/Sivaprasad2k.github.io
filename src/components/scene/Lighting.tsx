@@ -4,7 +4,7 @@ export const Lighting: React.FC = () => {
   return (
     <>
       {/* Layer 0: Hemisphere Light - Sky Fill & Ground Bounce */}
-      <hemisphereLight skyColor="#505C72" groundColor="#201C18" intensity={1.8} />
+      <hemisphereLight args={['#505C72', '#201C18', 1.8]} />
 
       {/* Layer 1: Global Soft Ambient Illumination */}
       <ambientLight intensity={2.2} color="#606C82" />
