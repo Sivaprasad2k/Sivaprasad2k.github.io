@@ -82,7 +82,7 @@ export const ROOM_OBJECTS_DATA: RoomObjectDefinition[] = [
     categoryLabel: 'FEATURED BUILD',
     subtitle: 'Agricultural Operations & Event Backend (2024)',
     layer: 4,
-    position: { x: 15, y: 38, rotation: 0, isStanding: true },
+    position: { x: 16, y: 38, rotation: 0, isStanding: true },
     interactive: true,
     metaphorResponse: 'Book lifts & opens → Crop Cycle Workflow notebook',
     projectId: 'krishi'
@@ -104,7 +104,7 @@ export const ROOM_OBJECTS_DATA: RoomObjectDefinition[] = [
     categoryLabel: 'FEATURED BUILD',
     subtitle: 'Property Marketplace with Fine-Grained RBAC (2024)',
     layer: 4,
-    position: { x: 31, y: 38, rotation: 0, isStanding: true },
+    position: { x: 30, y: 38, rotation: 0, isStanding: true },
     interactive: true,
     metaphorResponse: 'Book lifts & opens → RBAC Role Permission notebook',
     projectId: 'realestatehub'
@@ -147,7 +147,7 @@ export const ROOM_OBJECTS_DATA: RoomObjectDefinition[] = [
     categoryLabel: 'CONTACT',
     subtitle: 'Direct Engineering Inquiry',
     layer: 4,
-    position: { x: 82, y: 52, rotation: 0 },
+    position: { x: 82, y: 50, rotation: 0 },
     interactive: true,
     metaphorResponse: 'Screen illuminates → Direct email contact panel'
   },
