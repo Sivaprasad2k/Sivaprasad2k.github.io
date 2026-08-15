@@ -48,16 +48,18 @@ function SceneContent({ onFocusObject, activeObjectId }: SivasSpaceSceneProps) {
 
   return (
     <>
-      <PerspectiveCamera makeDefault fov={45} position={[0, 2.2, 4.8]} />
+      {/* Perspective Camera positioned closer at human eye height (Desk occupies 65-75% width) */}
+      <PerspectiveCamera makeDefault fov={45} position={[0, 1.75, 3.2]} />
+
       <OrbitControls
         ref={controlsRef}
         enableZoom={true}
         enablePan={false}
         maxPolarAngle={Math.PI / 2 - 0.05}
         minPolarAngle={Math.PI / 6}
-        minDistance={3.0}
-        maxDistance={6.5}
-        target={[0, 1.2, 0]}
+        minDistance={2.2}
+        maxDistance={4.8}
+        target={[0, 1.15, -0.2]}
       />
 
       <Suspense fallback={null}>

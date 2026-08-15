@@ -12,7 +12,7 @@ export const DeskFurniture: React.FC = () => {
         <boxGeometry args={[4.4, 0.12, 1.6]} />
         <meshStandardMaterial
           color="#3A2519"
-          roughness={0.55}
+          roughness={0.5}
           metalness={0.15}
         />
       </mesh>
@@ -23,10 +23,10 @@ export const DeskFurniture: React.FC = () => {
         castShadow
         receiveShadow
       >
-        <boxGeometry args={[4.4, 0.06, 0.04]} />
+        <boxGeometry args={[4.4, 0.08, 0.04]} />
         <meshStandardMaterial
           color="#251710"
-          roughness={0.65}
+          roughness={0.6}
         />
       </mesh>
 
@@ -39,7 +39,7 @@ export const DeskFurniture: React.FC = () => {
         <boxGeometry args={[4.0, 0.08, 0.45]} />
         <meshStandardMaterial
           color="#251710"
-          roughness={0.6}
+          roughness={0.55}
           metalness={0.1}
         />
       </mesh>
@@ -71,7 +71,7 @@ export const DeskFurniture: React.FC = () => {
         <boxGeometry args={[0.18, 1.04, 1.4]} />
         <meshStandardMaterial
           color="#1D120B"
-          roughness={0.75}
+          roughness={0.7}
         />
       </mesh>
 
@@ -84,7 +84,7 @@ export const DeskFurniture: React.FC = () => {
         <boxGeometry args={[0.18, 1.04, 1.4]} />
         <meshStandardMaterial
           color="#1D120B"
-          roughness={0.75}
+          roughness={0.7}
         />
       </mesh>
     </group>
