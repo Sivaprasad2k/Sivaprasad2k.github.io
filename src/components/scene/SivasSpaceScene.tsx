@@ -32,14 +32,14 @@ const OBJECT_CAMERA_TARGETS: Record<RoomObjectType, { position: [number, number,
   'whiteboard': { position: [0, 2.3, -1.4], target: [0, 2.3, -2.95] },
   'poster-linkedin': { position: [1.8, 2.4, -1.8], target: [1.8, 2.4, -2.95] },
   'poster-instagram': { position: [1.8, 1.8, -1.8], target: [1.8, 1.8, -2.95] },
-  'book-krishi': { position: [-1.4, 1.65, -0.1], target: [-1.4, 1.48, -0.5] },
-  'book-careerpath': { position: [-1.1, 1.65, -0.1], target: [-1.1, 1.48, -0.5] },
-  'book-realestate': { position: [-0.8, 1.65, -0.1], target: [-0.8, 1.48, -0.5] },
-  'laptop': { position: [0, 1.45, 0.4], target: [0, 1.16, -0.1] },
-  'book-avis': { position: [-1.2, 1.45, 0.6], target: [-1.2, 1.18, 0.2] },
-  'book-ruralinfra': { position: [1.1, 1.45, 0.6], target: [1.1, 1.18, 0.2] },
+  'book-krishi': { position: [-1.4, 1.65, -0.1], target: [-1.4, 1.48, -0.48] },
+  'book-careerpath': { position: [-1.1, 1.65, -0.1], target: [-1.1, 1.48, -0.52] },
+  'book-realestate': { position: [-0.8, 1.65, -0.1], target: [-0.8, 1.48, -0.48] },
+  'laptop': { position: [0, 1.45, 0.4], target: [0, 1.16, -0.05] },
+  'book-avis': { position: [-1.2, 1.45, 0.6], target: [-1.2, 1.18, 0.25] },
+  'book-ruralinfra': { position: [1.1, 1.45, 0.6], target: [1.1, 1.18, 0.25] },
   'phone': { position: [1.6, 1.65, -0.1], target: [1.6, 1.45, -0.5] },
-  'server': { position: [-1.8, 0.6, 0.4], target: [-1.8, 0.4, -0.2] }
+  'server': { position: [-1.8, 0.6, 0.4], target: [-1.8, 0.4, 0.2] }
 };
 
 function SceneContent({ onFocusObject, activeObjectId, debugMode }: SivasSpaceSceneProps) {
@@ -61,8 +61,8 @@ function SceneContent({ onFocusObject, activeObjectId, debugMode }: SivasSpaceSc
 
   return (
     <>
-      {/* Perspective Camera positioned closer at human eye height (Desk occupies 60-75% width) */}
-      <PerspectiveCamera makeDefault fov={52} position={[0, 1.65, 3.4]} />
+      {/* 3-Quarter Perspective Camera (10-12deg offset, eye height 1.62m, Desk occupies 60-75% width) */}
+      <PerspectiveCamera makeDefault fov={52} position={[0.35, 1.62, 3.35]} />
 
       <OrbitControls
         ref={controlsRef}
@@ -79,10 +79,10 @@ function SceneContent({ onFocusObject, activeObjectId, debugMode }: SivasSpaceSc
         {/* Layered Interior Lighting */}
         <Lighting debugLighting={isLightingDebug} />
 
-        {/* Room Shell Architecture */}
+        {/* Layer 1: Back Wall Architecture & Inset Window */}
         {showRoom && <RoomGeometry />}
 
-        {/* Workspace Furniture Architecture */}
+        {/* Layer 4: Under-Desk Furniture (Chair, Legs, Server Base) */}
         {showFurniture && (
           <>
             <DeskFurniture />
@@ -93,10 +93,10 @@ function SceneContent({ onFocusObject, activeObjectId, debugMode }: SivasSpaceSc
           </>
         )}
 
-        {/* Portfolio Objects */}
+        {/* Portfolio Objects across Spatial Layers */}
         {showPortfolioObjects && (
           <>
-            {/* Wall-Mounted Portfolio Objects */}
+            {/* Layer 1: Wall-Mounted Portfolio Objects (z = -2.95) */}
             <PhotoFrame3D
               onClick={() => onFocusObject(getObjectDef('photo'))}
               isFocused={activeObjectId === 'photo'}
@@ -111,11 +111,11 @@ function SceneContent({ onFocusObject, activeObjectId, debugMode }: SivasSpaceSc
               activeId={activeObjectId}
             />
 
-            {/* 3 Upright Standing Project Books on Rear Riser Shelf */}
+            {/* Layer 2: Rear Riser Shelf Objects (z = -0.48 / -0.52) */}
             <ProjectBook3D
               id="book-krishi"
               title="Krishi Engine"
-              position={[-1.4, 1.48, -0.5]}
+              position={[-1.4, 1.48, -0.48]}
               isStanding={true}
               onClick={() => onFocusObject(getObjectDef('book-krishi'))}
               isFocused={activeObjectId === 'book-krishi'}
@@ -123,7 +123,7 @@ function SceneContent({ onFocusObject, activeObjectId, debugMode }: SivasSpaceSc
             <ProjectBook3D
               id="book-careerpath"
               title="CareerPath Engine"
-              position={[-1.1, 1.48, -0.5]}
+              position={[-1.1, 1.48, -0.52]}
               isStanding={true}
               onClick={() => onFocusObject(getObjectDef('book-careerpath'))}
               isFocused={activeObjectId === 'book-careerpath'}
@@ -131,24 +131,24 @@ function SceneContent({ onFocusObject, activeObjectId, debugMode }: SivasSpaceSc
             <ProjectBook3D
               id="book-realestate"
               title="Real Estate Hub"
-              position={[-0.8, 1.48, -0.5]}
+              position={[-0.8, 1.48, -0.48]}
               isStanding={true}
               onClick={() => onFocusObject(getObjectDef('book-realestate'))}
               isFocused={activeObjectId === 'book-realestate'}
             />
 
-            {/* Centered Workstation Laptop on Desktop */}
+            {/* Layer 3: Walnut Desktop Objects (z = -0.05 / 0.25) */}
             <Laptop3D
+              rotation={[0, -0.08, 0]}
               onClick={() => onFocusObject(getObjectDef('laptop'))}
               isFocused={activeObjectId === 'laptop'}
             />
 
-            {/* 2 Resting Desktop Project Books */}
             <ProjectBook3D
               id="book-avis"
               title="Avis AI Assistant"
-              position={[-1.2, 1.18, 0.2]}
-              rotation={[0, -0.1, 0]}
+              position={[-1.2, 1.18, 0.25]}
+              rotation={[0, -0.12, 0]}
               isStanding={false}
               onClick={() => onFocusObject(getObjectDef('book-avis'))}
               isFocused={activeObjectId === 'book-avis'}
@@ -156,20 +156,19 @@ function SceneContent({ onFocusObject, activeObjectId, debugMode }: SivasSpaceSc
             <ProjectBook3D
               id="book-ruralinfra"
               title="Rural Infrastructure"
-              position={[1.1, 1.18, 0.2]}
-              rotation={[0, 0.1, 0]}
+              position={[1.1, 1.18, 0.25]}
+              rotation={[0, 0.12, 0]}
               isStanding={false}
               onClick={() => onFocusObject(getObjectDef('book-ruralinfra'))}
               isFocused={activeObjectId === 'book-ruralinfra'}
             />
 
-            {/* Phone Dock on Right Riser Shelf */}
             <PhoneDock3D
               onClick={() => onFocusObject(getObjectDef('phone'))}
               isFocused={activeObjectId === 'phone'}
             />
 
-            {/* Floor-Standing Server Rack Under Left Desk */}
+            {/* Layer 4: Floor-Standing Server Rack Under Desk (z = 0.2) */}
             <ServerRack3D
               onClick={() => onFocusObject(getObjectDef('server'))}
               isFocused={activeObjectId === 'server'}

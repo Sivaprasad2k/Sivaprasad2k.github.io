@@ -3,14 +3,20 @@ import React, { useState } from 'react';
 interface Laptop3DProps {
   onClick?: () => void;
   isFocused?: boolean;
+  rotation?: [number, number, number];
 }
 
-export const Laptop3D: React.FC<Laptop3DProps> = ({ onClick, isFocused = false }) => {
+export const Laptop3D: React.FC<Laptop3DProps> = ({
+  onClick,
+  isFocused = false,
+  rotation = [0, 0, 0]
+}) => {
   const [hovered, setHovered] = useState(false);
 
   return (
     <group
-      position={[0, 1.16, -0.1]}
+      position={[0, 1.16, -0.05]}
+      rotation={rotation}
       onClick={(e) => {
         e.stopPropagation();
         if (onClick) onClick();
