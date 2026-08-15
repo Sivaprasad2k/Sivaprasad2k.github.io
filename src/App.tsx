@@ -7,13 +7,16 @@ import { ObjectFocusOverlay } from './components/space-ui/ObjectFocusOverlay';
 import { SpaceNavigation } from './components/space-ui/SpaceNavigation';
 import { ReturnToSpaceBtn } from './components/space-ui/ReturnToSpaceBtn';
 import { ProjectBookReader } from './components/book/ProjectBookReader';
+import { LaptopWorkspace } from './components/laptop/LaptopWorkspace';
 import { useBookReader } from './hooks/useBookReader';
+import { useLaptopWorkspace } from './hooks/useLaptopWorkspace';
 
 export function App() {
   const [booting, setBooting] = useState<boolean>(true);
   const [activeObject, setActiveObject] = useState<RoomObjectDefinition | null>(null);
 
   const bookReader = useBookReader();
+  const laptopWorkspace = useLaptopWorkspace();
 
   useEffect(() => {
     // Check if session has already initialized space
@@ -29,7 +32,11 @@ export function App() {
   };
 
   const handleFocusObject = (objDef: RoomObjectDefinition) => {
-    if (objDef.projectId) {
+    if (objDef.id === 'laptop') {
+      // If clicking the laptop, open the Laptop Code Workspace directly
+      laptopWorkspace.openWorkspace();
+      setActiveObject(null);
+    } else if (objDef.projectId) {
       // If clicking a project book, open the Project Book Engine reader directly
       bookReader.openBook(objDef.projectId);
       setActiveObject(null);
@@ -64,7 +71,7 @@ export function App() {
       />
 
       <ReturnToSpaceBtn
-        visible={activeObject !== null && bookReader.activeBook === null}
+        visible={activeObject !== null && bookReader.activeBook === null && !laptopWorkspace.isOpen}
         onClick={handleCloseFocus}
       />
 
@@ -83,6 +90,14 @@ export function App() {
         onPrev={bookReader.prevPage}
         onClose={bookReader.closeBook}
         onOpenCover={bookReader.nextPage}
+      />
+
+      {/* Laptop Code Workspace Modal Overlay */}
+      <LaptopWorkspace
+        isOpen={laptopWorkspace.isOpen}
+        selectedRepo={laptopWorkspace.selectedRepo}
+        onSelectRepo={laptopWorkspace.selectRepo}
+        onClose={laptopWorkspace.closeWorkspace}
       />
 
       {/* Boot Initialization Overlay */}
