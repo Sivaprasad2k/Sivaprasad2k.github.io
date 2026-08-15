@@ -84,6 +84,41 @@ export const ObjectFocusOverlay: React.FC<ObjectFocusOverlayProps> = ({
           </div>
         )}
 
+        {/* 1B. ACADEMIC RECORD BOOK */}
+        {id === 'academic-book' && (
+          <div className="space-y-4">
+            <div className="bg-[#0B0D10] p-5 rounded-lg border border-[#25282D] space-y-3">
+              <div className="flex items-center justify-between text-xs text-[#65B8FF]">
+                <span className="font-bold uppercase tracking-wider">ACADEMIC BACKGROUND & CREDENTIALS</span>
+                <span className="text-[#7EE2A8]">DEGREE CONFERRED</span>
+              </div>
+              <h4 className="text-xl font-bold font-sans text-white">Bachelor of Technology</h4>
+              <p className="text-xs text-[#65B8FF]">Computer Science & Engineering · Systems Specialization</p>
+              <p className="font-sans text-slate-300 text-xs leading-relaxed pt-1">
+                Rigorous grounding in computer science fundamentals, data structures, algorithms, relational database theory, operating systems, and distributed application architectures.
+              </p>
+            </div>
+
+            <div className="space-y-2">
+              <span className="text-[#64748b] text-[10px] uppercase font-bold block">CORE ACADEMIC COURSEWORK</span>
+              <div className="grid grid-cols-2 gap-2">
+                {[
+                  'Data Structures & Algorithms',
+                  'Relational DBMS & SQL Invariants',
+                  'Distributed Systems & Async Pipelines',
+                  'Software Architecture & Design Patterns',
+                  'Operating Systems & Process Concurrency',
+                  'Object-Oriented Analysis & Spring Framework'
+                ].map((course, idx) => (
+                  <div key={idx} className="bg-[#0B0D10] p-3 rounded border border-[#25282D] text-xs text-slate-200 font-sans">
+                    • {course}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        )}
+
         {/* 2. WORKSTATION LAPTOP */}
         {id === 'laptop' && (
           <div className="space-y-4">
@@ -121,12 +156,12 @@ export const ObjectFocusOverlay: React.FC<ObjectFocusOverlayProps> = ({
           </div>
         )}
 
-        {/* 3-7. PROJECT BOOKS */}
+        {/* 3-7. PROJECT BOOKS & LEFT WALL GALLERY POSTERS */}
         {linkedProject && (
           <div className="space-y-4">
             <div className="bg-[#0B0D10] p-4 rounded-lg border border-[#25282D] space-y-2">
               <div className="flex items-center justify-between text-[10px] text-[#65B8FF]">
-                <span className="font-bold uppercase">PAGE 1 PREVIEW · {linkedProject.status}</span>
+                <span className="font-bold uppercase">PROJECT OVERVIEW · {linkedProject.status}</span>
                 <span className="text-[#64748b]">{linkedProject.technologies.slice(0, 3).join(' · ')}</span>
               </div>
               <h4 className="text-lg font-bold font-sans text-white">{linkedProject.title}</h4>
@@ -143,7 +178,7 @@ export const ObjectFocusOverlay: React.FC<ObjectFocusOverlayProps> = ({
                 className="w-full py-3 px-4 rounded-lg bg-[#65B8FF] hover:bg-[#52a4eb] text-[#0B0D10] font-bold font-sans text-xs transition-all flex items-center justify-center gap-2 shadow-xl"
               >
                 <BookOpen className="w-4 h-4" />
-                <span>OPEN PROJECT BOOK NOTEBOOK</span>
+                <span>OPEN PROJECT ARCHITECTURE NOTEBOOK</span>
               </button>
             )}
           </div>
@@ -164,7 +199,7 @@ export const ObjectFocusOverlay: React.FC<ObjectFocusOverlayProps> = ({
             </div>
 
             <div className="space-y-2">
-              {PROFILE_DATA.corePrinciples.slice(0, 3).map((p) => (
+              {PROFILE_DATA.corePrinciples.slice(0, 4).map((p) => (
                 <div key={p.id} className="bg-[#0B0D10] p-3.5 rounded-lg border border-[#25282D] space-y-1 text-xs">
                   <div className="flex items-center justify-between text-[#65B8FF] font-bold">
                     <span>{p.number}. {p.title}</span>
@@ -243,8 +278,8 @@ export const ObjectFocusOverlay: React.FC<ObjectFocusOverlayProps> = ({
           </div>
         )}
 
-        {/* 12. PHONE */}
-        {id === 'phone' && (
+        {/* 12. PHONE & CONTACT PLAQUE */}
+        {(id === 'phone' || id === 'poster-contact') && (
           <div className="space-y-4">
             <div className="bg-[#0B0D10] p-6 rounded-lg border border-[#25282D] text-center space-y-3">
               <div className="p-3.5 rounded-full bg-[#7EE2A8]/10 text-[#7EE2A8] w-14 h-14 mx-auto flex items-center justify-center">

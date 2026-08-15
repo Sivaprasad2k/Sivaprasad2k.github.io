@@ -8,7 +8,7 @@ export const Lighting: React.FC<LightingProps> = ({ debugLighting = false }) => 
   if (debugLighting) {
     return (
       <>
-        {/* Neutral Diagnostic White/Soft-Gray Illumination (?debug=lighting) */}
+        {/* Neutral Diagnostic White Illumination (?debug=lighting) */}
         <ambientLight intensity={3.0} color="#FFFFFF" />
         <directionalLight position={[0, 8, 4]} intensity={2.0} color="#FFFFFF" castShadow />
       </>
@@ -17,20 +17,20 @@ export const Lighting: React.FC<LightingProps> = ({ debugLighting = false }) => 
 
   return (
     <>
-      {/* Layer 0: Hemisphere Light - Sky Fill & Ground Bounce */}
-      <hemisphereLight args={['#606E88', '#282420', 1.8]} />
+      {/* Layer 0: Hemisphere Light - Warm Upper Sky & Dark Ground Bounce */}
+      <hemisphereLight args={['#58657B', '#241E1A', 1.6]} />
 
-      {/* Layer 1: Global Soft Ambient Illumination */}
-      <ambientLight intensity={1.8} color="#707C94" />
+      {/* Layer 1: Global Soft Ambient Illumination for Material Readability */}
+      <ambientLight intensity={1.6} color="#606C82" />
 
-      {/* Layer 2: Soft Room Directional Window Fill Light */}
+      {/* Layer 2: Soft Room Window Directional Fill Light from Right Wall */}
       <directionalLight
-        position={[3, 5, 4]}
-        intensity={1.5}
-        color="#D8E4FF"
+        position={[6, 5, 3]}
+        intensity={1.2}
+        color="#CBE0FF"
         castShadow
-        shadow-mapSize-width={2048}
-        shadow-mapSize-height={2048}
+        shadow-mapSize-width={1024}
+        shadow-mapSize-height={1024}
         shadow-camera-near={0.5}
         shadow-camera-far={15}
         shadow-camera-left={-8}
@@ -39,24 +39,14 @@ export const Lighting: React.FC<LightingProps> = ({ debugLighting = false }) => 
         shadow-camera-bottom={-8}
       />
 
-      {/* Layer 3: Left Articulated Desk Lamp Warm Practical Key Light */}
+      {/* Layer 3: Subtle Terminal & Screen Glow Accents */}
       <pointLight
-        position={[-1.8, 1.6, -0.2]}
-        intensity={4.5}
-        distance={5.5}
-        color="#FFB042"
-        castShadow
-        shadow-mapSize-width={1024}
-        shadow-mapSize-height={1024}
-      />
-
-      {/* Layer 4: Upper-Left Picture Spotlight PointLight */}
-      <pointLight
-        position={[-1.8, 2.6, -1.2]}
-        intensity={2.2}
-        distance={3.5}
-        color="#FFE5B4"
+        position={[0, 1.3, 0.1]}
+        intensity={0.35}
+        distance={1.5}
+        color="#10B981"
       />
     </>
   );
 };
+

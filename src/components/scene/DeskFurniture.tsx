@@ -8,11 +8,11 @@ export const DeskFurniture: React.FC = () => {
         rotation-x={-Math.PI / 2}
         position={[0, 0.003, 0]}
       >
-        <planeGeometry args={[5.0, 2.0]} />
+        <planeGeometry args={[5.2, 2.2]} />
         <meshStandardMaterial
           color="#000000"
           transparent
-          opacity={0.6}
+          opacity={0.65}
           roughness={1.0}
         />
       </mesh>
@@ -23,7 +23,7 @@ export const DeskFurniture: React.FC = () => {
         castShadow
         receiveShadow
       >
-        <boxGeometry args={[4.4, 0.12, 1.6]} />
+        <boxGeometry args={[4.6, 0.12, 1.6]} />
         <meshStandardMaterial
           color="#4E3527"
           roughness={0.5}
@@ -33,11 +33,11 @@ export const DeskFurniture: React.FC = () => {
 
       {/* Desk Front Apron Trim (#36241A Dark Wood) */}
       <mesh
-        position={[0, 1.02, 0.78]}
+        position={[0, 1.01, 0.78]}
         castShadow
         receiveShadow
       >
-        <boxGeometry args={[4.4, 0.08, 0.04]} />
+        <boxGeometry args={[4.6, 0.08, 0.04]} />
         <meshStandardMaterial
           color="#36241A"
           roughness={0.6}
@@ -46,11 +46,11 @@ export const DeskFurniture: React.FC = () => {
 
       {/* Raised Rear Riser Shelf (#36241A Dark Walnut Riser) */}
       <mesh
-        position={[0, 1.32, -0.5]}
+        position={[0, 1.32, -0.52]}
         castShadow
         receiveShadow
       >
-        <boxGeometry args={[4.0, 0.08, 0.45]} />
+        <boxGeometry args={[4.2, 0.08, 0.45]} />
         <meshStandardMaterial
           color="#36241A"
           roughness={0.55}
@@ -60,7 +60,16 @@ export const DeskFurniture: React.FC = () => {
 
       {/* Riser Shelf Left Support */}
       <mesh
-        position={[-1.8, 1.20, -0.5]}
+        position={[-1.9, 1.20, -0.52]}
+        castShadow
+      >
+        <boxGeometry args={[0.08, 0.16, 0.4]} />
+        <meshStandardMaterial color="#281A12" roughness={0.7} />
+      </mesh>
+
+      {/* Riser Shelf Center Support */}
+      <mesh
+        position={[0, 1.20, -0.52]}
         castShadow
       >
         <boxGeometry args={[0.08, 0.16, 0.4]} />
@@ -69,7 +78,7 @@ export const DeskFurniture: React.FC = () => {
 
       {/* Riser Shelf Right Support */}
       <mesh
-        position={[1.8, 1.20, -0.5]}
+        position={[1.9, 1.20, -0.52]}
         castShadow
       >
         <boxGeometry args={[0.08, 0.16, 0.4]} />
@@ -78,7 +87,7 @@ export const DeskFurniture: React.FC = () => {
 
       {/* Left Solid Wooden Pillar Leg (#281A12) */}
       <mesh
-        position={[-2.0, 0.52, 0]}
+        position={[-2.1, 0.52, 0]}
         castShadow
         receiveShadow
       >
@@ -91,7 +100,7 @@ export const DeskFurniture: React.FC = () => {
 
       {/* Right Solid Wooden Pillar Leg (#281A12) */}
       <mesh
-        position={[2.0, 0.52, 0]}
+        position={[2.1, 0.52, 0]}
         castShadow
         receiveShadow
       >
@@ -104,3 +113,4 @@ export const DeskFurniture: React.FC = () => {
     </group>
   );
 };
+
