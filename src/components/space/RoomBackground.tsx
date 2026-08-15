@@ -7,10 +7,10 @@ interface RoomBackgroundProps {
 
 export const RoomBackground: React.FC<RoomBackgroundProps> = ({ parallaxX, parallaxY }) => {
   return (
-    <div className="absolute inset-0 pointer-events-none overflow-hidden select-none">
+    <div className="absolute inset-0 pointer-events-none overflow-hidden select-none [transform-style:preserve-3d]">
       {/* Layer 0: Deep Night Atmosphere & Restrained Practical Ambient Lighting */}
       <div 
-        className="absolute inset-0 bg-[#0A0C0E] transition-transform duration-300 ease-out"
+        className="absolute inset-0 bg-[#08090B] transition-transform duration-300 ease-out"
         style={{
           transform: `translate3d(${parallaxX * 0.05}px, ${parallaxY * 0.05}px, 0)`
         }}
@@ -31,9 +31,9 @@ export const RoomBackground: React.FC<RoomBackgroundProps> = ({ parallaxX, paral
         />
       </div>
 
-      {/* Layer 1: Back Wall Surface (#121417 Matte Graphite Charcoal) */}
+      {/* Layer 1: Back Wall Surface (#111316 Matte Graphite Charcoal) */}
       <div 
-        className="absolute inset-x-0 top-0 h-[68%] bg-[#121417] border-b-2 border-[#1A1D22] transition-transform duration-300 ease-out shadow-inner"
+        className="absolute inset-x-0 top-0 h-[68%] bg-[#111316] border-b-2 border-[#1A1D22] transition-transform duration-300 ease-out shadow-inner"
         style={{
           transform: `translate3d(${parallaxX * 0.10}px, ${parallaxY * 0.10}px, 0)`
         }}

@@ -19,9 +19,9 @@ export const RoomViewport: React.FC<RoomViewportProps> = ({
   const focalOffsetY = (50 - cameraTarget.focalY) * (combinedZoom - 1.0) * 8;
 
   return (
-    <div className="relative w-full h-full overflow-hidden bg-[#0B0D10] select-none">
+    <div className="relative w-full h-full overflow-hidden bg-[#0A0C0E] select-none [perspective:1200px] [perspective-origin:50%_45%]">
       <div
-        className="relative w-full h-full transition-transform duration-700 ease-out transform-gpu origin-center"
+        className="relative w-full h-full transition-transform duration-700 ease-out transform-gpu origin-center [transform-style:preserve-3d]"
         style={{
           transform: `scale(${combinedZoom}) translate3d(${focalOffsetX}px, ${focalOffsetY}px, 0)`
         }}

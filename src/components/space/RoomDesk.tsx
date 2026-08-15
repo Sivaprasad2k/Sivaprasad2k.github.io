@@ -8,7 +8,7 @@ interface RoomDeskProps {
 export const RoomDesk: React.FC<RoomDeskProps> = ({ parallaxX, parallaxY }) => {
   return (
     <div 
-      className="absolute left-0 right-0 bottom-[10%] h-[50%] pointer-events-none select-none transition-transform duration-300 ease-out z-20"
+      className="absolute left-0 right-0 bottom-[10%] h-[50%] pointer-events-none select-none transition-transform duration-300 ease-out z-20 [transform-style:preserve-3d]"
       style={{
         transform: `translate3d(${parallaxX * 0.35}px, ${parallaxY * 0.35}px, 0)`
       }}
