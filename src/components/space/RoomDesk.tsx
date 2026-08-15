@@ -8,44 +8,44 @@ interface RoomDeskProps {
 export const RoomDesk: React.FC<RoomDeskProps> = ({ parallaxX, parallaxY }) => {
   return (
     <div 
-      className="absolute inset-x-[12%] bottom-[16%] h-[26%] pointer-events-none select-none transition-transform duration-300 ease-out z-20"
+      className="absolute left-[18%] right-[18%] bottom-[12%] h-[48%] pointer-events-none select-none transition-transform duration-300 ease-out z-20"
       style={{
         transform: `translate3d(${parallaxX * 0.35}px, ${parallaxY * 0.35}px, 0)`
       }}
     >
-      {/* Desk Surface Platform (#3A2920 Dark Walnut) */}
-      <div className="relative w-full h-12 bg-[#3A2920] rounded-lg border-t-2 border-[#543b2e] shadow-2xl overflow-hidden flex items-center justify-between px-6">
-        <div className="h-full w-full bg-gradient-to-b from-white/5 to-transparent pointer-events-none" />
-        {/* Subtle Edge Highlight */}
-        <div className="absolute top-0 left-0 right-0 h-[1px] bg-[#E8E2D6]/20" />
+      {/* Rear Desk Shelf / Riser (#231712 Dark Walnut Riser) */}
+      <div className="absolute top-[32%] left-[4%] right-[4%] h-[14%] bg-[#231712] rounded-t border-t border-[#3D291F] shadow-lg flex items-center justify-between px-4">
+        <div className="w-full h-full bg-gradient-to-b from-white/5 to-transparent" />
+        <div className="absolute top-0 left-0 right-0 h-[1px] bg-[#E8E2D6]/15" />
       </div>
 
-      {/* Desk Legs Structure */}
-      <div className="flex justify-between px-12 -mt-1 h-full opacity-90">
-        {/* Left Leg Pair */}
-        <div className="flex gap-4">
-          <div className="w-4 h-full bg-[#201611] border-r border-[#3A2920]" />
-          <div className="w-3 h-full bg-[#17100c]" />
+      {/* Main Desktop Surface Platform (#2A1D17 Dark Walnut) */}
+      <div className="absolute top-[44%] left-0 right-0 h-[12%] bg-[#2A1D17] rounded-lg border-t-2 border-[#4A3428] shadow-2xl overflow-hidden flex items-center justify-between px-6">
+        <div className="h-full w-full bg-gradient-to-b from-white/10 via-transparent to-black/30 pointer-events-none" />
+        {/* Desk Front Edge Highlight */}
+        <div className="absolute top-0 left-0 right-0 h-[1px] bg-[#E8E2D6]/25" />
+        {/* Front Edge Bevel Trim */}
+        <div className="absolute bottom-0 left-0 right-0 h-1 bg-[#1C130F]" />
+      </div>
+
+      {/* Desk Legs & Frame Structure */}
+      <div className="absolute top-[55%] left-[3%] right-[3%] bottom-0 flex justify-between px-4 opacity-95">
+        {/* Left Solid Leg Column */}
+        <div className="w-8 h-full bg-[#1A120E] border-r-2 border-[#2A1D17] shadow-xl flex flex-col justify-between">
+          <div className="w-full h-2 bg-[#2A1D17]" />
         </div>
 
-        {/* Right Leg Pair */}
-        <div className="flex gap-4">
-          <div className="w-3 h-full bg-[#17100c]" />
-          <div className="w-4 h-full bg-[#201611] border-l border-[#3A2920]" />
+        {/* Right Solid Leg Column */}
+        <div className="w-8 h-full bg-[#1A120E] border-l-2 border-[#2A1D17] shadow-xl flex flex-col justify-between">
+          <div className="w-full h-2 bg-[#2A1D17]" />
         </div>
       </div>
 
-      {/* Desk Warm Lamp Fixture (Left Side of Desk) */}
-      <div className="absolute left-[8%] -top-32 w-16 h-36 flex flex-col items-center pointer-events-none">
-        {/* Lamp Shade */}
-        <div className="w-12 h-8 bg-[#25282D] rounded-t-xl border-t border-[#383d44] relative shadow-lg flex items-center justify-center">
-          <div className="w-8 h-2 bg-amber-400/80 rounded-full blur-[2px] mt-4" />
-        </div>
-        {/* Lamp Arm */}
-        <div className="w-1.5 h-20 bg-[#383d44] rounded-full" />
-        {/* Lamp Base */}
-        <div className="w-10 h-3 bg-[#25282D] rounded-full border-t border-[#383d44]" />
-      </div>
+      {/* Floor Contact Shadow */}
+      <div className="absolute bottom-0 left-0 right-0 h-4 bg-black/50 blur-md pointer-events-none" />
+
+      {/* Warm Ambient Desk Lighting Glow */}
+      <div className="absolute left-[40%] top-[20%] w-[300px] h-[180px] bg-amber-600/10 rounded-full blur-[80px] pointer-events-none" />
     </div>
   );
 };

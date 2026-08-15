@@ -1,5 +1,5 @@
 import React from 'react';
-import { PhoneCall } from 'lucide-react';
+import { Mail, PhoneCall } from 'lucide-react';
 
 interface PhoneObjectProps {
   parallaxX: number;
@@ -19,39 +19,43 @@ export const PhoneObject: React.FC<PhoneObjectProps> = ({
       onClick={onClick}
       tabIndex={0}
       role="button"
-      aria-label="Desk Phone - Contact Siva Prasad"
+      aria-label="Desk Phone - Direct Contact Inquiry"
       onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onClick(); } }}
-      className={`absolute left-[80%] bottom-[28%] w-16 h-28 bg-[#17191D] border-2 rounded-xl p-1.5 flex flex-col justify-between transition-all duration-300 cursor-pointer z-30 group shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#7EE2A8] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0B0D10] ${
-        isFocused
-          ? 'border-[#7EE2A8] ring-4 ring-[#7EE2A8]/30 scale-105'
-          : 'border-[#3A2920] hover:border-[#7EE2A8]/70 hover:scale-[1.02]'
+      className={`absolute left-[74%] top-[48%] w-16 h-28 transition-all duration-300 cursor-pointer z-30 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#65B8FF] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0B0D10] ${
+        isFocused ? 'scale-110 -translate-y-2' : 'hover:-translate-y-1 hover:scale-105'
       }`}
       style={{
-        transform: `translate3d(${parallaxX * 0.50}px, ${parallaxY * 0.50}px, 0) rotate(8deg)`
+        transform: `translate3d(${parallaxX * 0.45}px, ${parallaxY * 0.45}px, 0)`
       }}
     >
-      {/* Phone Screen Lid */}
-      <div className={`w-full h-20 bg-[#0B0D10] border rounded-lg p-1 flex flex-col justify-between transition-colors ${
-        isFocused ? 'border-[#7EE2A8]' : 'border-[#25282D] group-hover:border-[#7EE2A8]/50'
+      {/* Phone Stand & Body Frame */}
+      <div className={`w-full h-full bg-[#17191D] border-2 rounded-xl p-2 flex flex-col justify-between shadow-2xl transition-all ${
+        isFocused
+          ? 'border-[#7EE2A8] ring-4 ring-[#7EE2A8]/30'
+          : 'border-[#25282D] group-hover:border-[#7EE2A8]/70'
       }`}>
-        <div className="flex items-center justify-between text-[7px] font-mono text-[#64748b]">
-          <span>PHONE</span>
-          <span className="w-1.5 h-1.5 rounded-full bg-[#7EE2A8] animate-pulse" />
+        {/* Screen Top Indicator Bar */}
+        <div className="flex items-center justify-between border-b border-[#25282D] pb-1 font-mono text-[8px]">
+          <Mail className="w-2.5 h-2.5 text-[#7EE2A8]" />
+          <span className="text-[#7EE2A8] font-bold">READY</span>
         </div>
 
-        {/* Active Contact Icon Screen */}
-        <div className="my-auto flex flex-col items-center justify-center text-[#7EE2A8]">
-          <PhoneCall className="w-4 h-4 mb-0.5" />
-          <span className="text-[7px] font-mono font-bold">CONTACT</span>
+        {/* Screen Center Active Display */}
+        <div className="bg-[#0B0D10] p-2 rounded-lg border border-[#25282D] text-center space-y-1 my-auto shadow-inner">
+          <PhoneCall className="w-4 h-4 text-[#7EE2A8] mx-auto animate-pulse" />
+          <span className="font-mono text-[7px] text-[#E8E2D6] font-bold block uppercase">CONTACT</span>
         </div>
 
-        <div className="text-[6px] font-mono text-center text-[#94a3b8] truncate">
-          DIRECT LINE
+        {/* Bottom Speaker Grille */}
+        <div className="flex justify-center gap-1">
+          <span className="w-1 h-1 bg-[#25282D] rounded-full" />
+          <span className="w-1 h-1 bg-[#25282D] rounded-full" />
+          <span className="w-1 h-1 bg-[#25282D] rounded-full" />
         </div>
       </div>
 
-      {/* Home Indicator Bar */}
-      <div className="w-6 h-1 bg-[#383d44] rounded-full mx-auto" />
+      {/* Desk Surface Contact Shadow */}
+      <div className="absolute -bottom-1.5 left-0 right-0 h-2 bg-black/60 blur-xs pointer-events-none" />
     </div>
   );
 };
