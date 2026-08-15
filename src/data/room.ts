@@ -41,9 +41,19 @@ export const ROOM_OBJECTS_DATA: RoomObjectDefinition[] = [
     categoryLabel: 'IDENTITY',
     subtitle: 'Siva Prasad M L · Backend Engineer',
     layer: 2,
-    position: { x: 18, y: 14, rotation: 0, surfaceAnchor: 'wall' },
+    position: { x: 14, y: 12, rotation: 0, surfaceAnchor: 'wall' },
     interactive: true,
     metaphorResponse: 'Overhead picture lamp illuminates → Profile panel'
+  },
+  {
+    id: 'whiteboard',
+    title: 'Whiteboard',
+    categoryLabel: 'HOW I THINK',
+    subtitle: 'Engineering Methodology & Systems Invariants',
+    layer: 2,
+    position: { x: 48, y: 10, rotation: 0, surfaceAnchor: 'wall' },
+    interactive: true,
+    metaphorResponse: 'Methodology whiteboard → Systems thinking panel'
   },
   {
     id: 'poster-linkedin',
@@ -51,7 +61,7 @@ export const ROOM_OBJECTS_DATA: RoomObjectDefinition[] = [
     categoryLabel: 'LINKEDIN',
     subtitle: 'Professional Profile & Network',
     layer: 2,
-    position: { x: 16, y: 44, rotation: 0, surfaceAnchor: 'wall' },
+    position: { x: 74, y: 10, rotation: 0, surfaceAnchor: 'wall' },
     interactive: true,
     metaphorResponse: 'Plaque illuminated → Professional profile link',
     externalUrl: 'https://www.linkedin.com/in/sivaprasadml'
@@ -62,28 +72,18 @@ export const ROOM_OBJECTS_DATA: RoomObjectDefinition[] = [
     categoryLabel: 'INSTAGRAM',
     subtitle: 'Personal Space & Community Context',
     layer: 2,
-    position: { x: 23, y: 44, rotation: 0, surfaceAnchor: 'wall' },
+    position: { x: 74, y: 32, rotation: 0, surfaceAnchor: 'wall' },
     interactive: true,
     metaphorResponse: 'Plaque illuminated → Personal context link',
     externalUrl: 'https://instagram.com/sivaprasad2k'
   },
   {
-    id: 'whiteboard',
-    title: 'Whiteboard',
-    categoryLabel: 'HOW I THINK',
-    subtitle: 'Engineering Methodology & Systems Invariants',
-    layer: 2,
-    position: { x: 60, y: 14, rotation: 0, surfaceAnchor: 'wall' },
-    interactive: true,
-    metaphorResponse: 'Methodology whiteboard → Systems thinking panel'
-  },
-  {
     id: 'book-krishi',
     title: 'Krishi Engine',
-    categoryLabel: 'FEATURED BUILD',
+    categoryLabel: 'BUILD',
     subtitle: 'Agricultural Operations & Event Backend (2024)',
     layer: 4,
-    position: { x: 39, y: 38, rotation: 0, isStanding: true, surfaceAnchor: 'riser' },
+    position: { x: 18, y: 38, rotation: 0, isStanding: true, surfaceAnchor: 'riser' },
     interactive: true,
     metaphorResponse: 'Book lifts & opens → Crop Cycle Workflow notebook',
     projectId: 'krishi'
@@ -91,10 +91,10 @@ export const ROOM_OBJECTS_DATA: RoomObjectDefinition[] = [
   {
     id: 'book-careerpath',
     title: 'CareerPath Engine',
-    categoryLabel: 'FEATURED BUILD',
+    categoryLabel: 'BUILD',
     subtitle: 'Relational Application & Milestone Tracker (2024)',
     layer: 4,
-    position: { x: 44, y: 38, rotation: 0, isStanding: true, surfaceAnchor: 'riser' },
+    position: { x: 24, y: 38, rotation: 0, isStanding: true, surfaceAnchor: 'riser' },
     interactive: true,
     metaphorResponse: 'Book lifts & opens → Application State Machine notebook',
     projectId: 'careerpath'
@@ -102,10 +102,10 @@ export const ROOM_OBJECTS_DATA: RoomObjectDefinition[] = [
   {
     id: 'book-realestate',
     title: 'Real Estate Hub',
-    categoryLabel: 'FEATURED BUILD',
+    categoryLabel: 'BUILD',
     subtitle: 'Property Marketplace with Fine-Grained RBAC (2024)',
     layer: 4,
-    position: { x: 49, y: 38, rotation: 0, isStanding: true, surfaceAnchor: 'riser' },
+    position: { x: 30, y: 38, rotation: 0, isStanding: true, surfaceAnchor: 'riser' },
     interactive: true,
     metaphorResponse: 'Book lifts & opens → RBAC Role Permission notebook',
     projectId: 'realestatehub'
@@ -116,7 +116,7 @@ export const ROOM_OBJECTS_DATA: RoomObjectDefinition[] = [
     categoryLabel: 'GITHUB',
     subtitle: 'SIVA / CODE Workstation',
     layer: 4,
-    position: { x: 58, y: 44, rotation: 0, surfaceAnchor: 'desktop' },
+    position: { x: 48, y: 44, rotation: 0, surfaceAnchor: 'desktop' },
     interactive: true,
     metaphorResponse: 'Screen brightens → Workspace activation & repository codebases'
   },
@@ -126,7 +126,7 @@ export const ROOM_OBJECTS_DATA: RoomObjectDefinition[] = [
     categoryLabel: 'SYSTEM EXPERIMENT',
     subtitle: 'Asynchronous Task Pipeline (2025)',
     layer: 4,
-    position: { x: 35, y: 56, rotation: -3, isStanding: false, surfaceAnchor: 'desktop' },
+    position: { x: 22, y: 56, rotation: -3, isStanding: false, surfaceAnchor: 'desktop' },
     interactive: true,
     metaphorResponse: 'Book lifts & opens → Async Request Pipeline notebook',
     projectId: 'avis'
@@ -137,7 +137,7 @@ export const ROOM_OBJECTS_DATA: RoomObjectDefinition[] = [
     categoryLabel: 'DATA PROJECT',
     subtitle: 'ML Dataset Preprocessing & Model (2024)',
     layer: 4,
-    position: { x: 43, y: 56, rotation: 3, isStanding: false, surfaceAnchor: 'desktop' },
+    position: { x: 64, y: 56, rotation: 3, isStanding: false, surfaceAnchor: 'desktop' },
     interactive: true,
     metaphorResponse: 'Book lifts & opens → ML Dataset Pipeline notebook',
     projectId: 'ruralinfra'
@@ -148,7 +148,7 @@ export const ROOM_OBJECTS_DATA: RoomObjectDefinition[] = [
     categoryLabel: 'CONTACT',
     subtitle: 'Direct Engineering Inquiry',
     layer: 4,
-    position: { x: 78, y: 48, rotation: 0, surfaceAnchor: 'riser' },
+    position: { x: 82, y: 48, rotation: 0, surfaceAnchor: 'riser' },
     interactive: true,
     metaphorResponse: 'Screen illuminates → Direct email contact panel'
   },
@@ -158,7 +158,7 @@ export const ROOM_OBJECTS_DATA: RoomObjectDefinition[] = [
     categoryLabel: 'SYSTEMS',
     subtitle: 'Backend Technology Stack & Infrastructure',
     layer: 5,
-    position: { x: 14, y: 68, rotation: 0, surfaceAnchor: 'floor' },
+    position: { x: 12, y: 68, rotation: 0, surfaceAnchor: 'floor' },
     interactive: true,
     metaphorResponse: 'LED indicators pulse → Systems & Stack panel'
   }

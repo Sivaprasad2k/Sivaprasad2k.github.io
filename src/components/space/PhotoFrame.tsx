@@ -22,10 +22,10 @@ export const PhotoFrame: React.FC<PhotoFrameProps> = ({
       role="button"
       aria-label="Identity Portrait - Siva Prasad M L"
       onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onClick(); } }}
-      className={`absolute left-[14%] top-[15%] w-[175px] h-[215px] bg-[#111315] border-4 rounded-lg p-2.5 flex flex-col justify-between transition-all duration-300 cursor-pointer z-20 group shadow-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#65B8FF] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0B0D10] ${
+      className={`absolute left-[14%] top-[12%] w-[175px] h-[215px] bg-[#121315] border-4 rounded-lg p-2.5 flex flex-col justify-between transition-all duration-300 cursor-pointer z-20 group shadow-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#65B8FF] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0B0D10] ${
         isFocused
           ? 'border-[#65B8FF] ring-4 ring-[#65B8FF]/30 scale-105'
-          : 'border-[#2B1C14] hover:border-[#65B8FF]/70 hover:scale-[1.02]'
+          : 'border-[#1E2126] hover:border-[#65B8FF]/70 hover:scale-[1.02]'
       }`}
       style={{
         transform: `translate3d(${parallaxX * 0.20}px, ${parallaxY * 0.20}px, 0)`
@@ -36,7 +36,7 @@ export const PhotoFrame: React.FC<PhotoFrameProps> = ({
         <div className="w-18 h-1 bg-amber-400/90 rounded-full blur-[1px]" />
       </div>
 
-      {/* Photo Frame Matting & Portrait Container */}
+      {/* Photo Frame White Matting & Portrait Container */}
       <div className="w-full h-36 bg-[#08090B] rounded border border-[#1A1D22] p-3 flex flex-col items-center justify-center text-center space-y-1.5 relative overflow-hidden shadow-inner">
         <div className="p-3 rounded-full bg-[#171A20] text-[#65B8FF] ring-2 ring-[#65B8FF]/30 shadow-2xl">
           <ShieldCheck className="w-8 h-8" />

@@ -20,7 +20,7 @@ export const RoomServerRack: React.FC<RoomServerRackProps> = ({
       role="button"
       aria-label="Server Rack - Systems & Stack Infrastructure"
       onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onClick(); } }}
-      className={`absolute left-[14%] bottom-[8%] w-36 h-56 bg-[#111315] border-2 rounded-lg p-3 flex flex-col justify-between transition-all duration-300 cursor-pointer z-30 group shadow-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#65B8FF] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0B0D10] ${
+      className={`absolute left-[12%] bottom-[8%] w-36 h-56 bg-[#141618] border-2 rounded-lg p-3 flex flex-col justify-between transition-all duration-300 cursor-pointer z-30 group shadow-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#65B8FF] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0B0D10] ${
         isFocused
           ? 'border-[#65B8FF] ring-4 ring-[#65B8FF]/30 scale-105'
           : 'border-[#1E2126] hover:border-[#65B8FF]/70 hover:scale-[1.02]'
