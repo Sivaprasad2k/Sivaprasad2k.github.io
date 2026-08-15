@@ -8,6 +8,8 @@ import { useSceneCamera } from '../../hooks/useSceneCamera';
 import { Lighting } from './Lighting';
 import { RoomGeometry } from './RoomGeometry';
 import { DeskFurniture } from './DeskFurniture';
+import { OfficeChair3D } from './OfficeChair3D';
+import { Mouse3D } from './Mouse3D';
 import { DeskLamp3D } from './DeskLamp3D';
 import { WindowPane3D } from './WindowPane3D';
 import { PhotoFrame3D } from './PhotoFrame3D';
@@ -21,7 +23,7 @@ import { ServerRack3D } from './ServerRack3D';
 interface SivasSpaceSceneProps {
   onFocusObject: (obj: RoomObjectDefinition) => void;
   activeObjectId: RoomObjectType | null;
-  debugEnvironmentOnly?: boolean;
+  debugMode?: 'env' | 'furniture' | 'objects' | 'full' | null;
 }
 
 const OBJECT_CAMERA_TARGETS: Record<RoomObjectType, { position: [number, number, number]; target: [number, number, number] }> = {
@@ -39,7 +41,7 @@ const OBJECT_CAMERA_TARGETS: Record<RoomObjectType, { position: [number, number,
   'server': { position: [-1.8, 0.6, 0.4], target: [-1.8, 0.4, -0.2] }
 };
 
-function SceneContent({ onFocusObject, activeObjectId, debugEnvironmentOnly = false }: SivasSpaceSceneProps) {
+function SceneContent({ onFocusObject, activeObjectId, debugMode }: SivasSpaceSceneProps) {
   const controlsRef = useRef<OrbitControlsImpl>(null);
   const activeCameraTarget = activeObjectId ? OBJECT_CAMERA_TARGETS[activeObjectId] : null;
 
@@ -47,10 +49,13 @@ function SceneContent({ onFocusObject, activeObjectId, debugEnvironmentOnly = fa
 
   const getObjectDef = (id: RoomObjectType) => ROOM_OBJECTS_DATA.find(o => o.id === id)!;
 
-  // Check if URL has ?debug=env parameter
+  // Determine active debug mode from prop or URL parameter (?debug=env, ?debug=furniture, ?debug=objects)
   const urlParams = typeof window !== 'undefined' ? new URLSearchParams(window.location.search) : null;
-  const isUrlDebugEnv = urlParams ? urlParams.get('debug') === 'env' : false;
-  const shouldHideObjects = debugEnvironmentOnly || isUrlDebugEnv;
+  const activeDebugParam = debugMode || (urlParams ? (urlParams.get('debug') as 'env' | 'furniture' | 'objects') : null);
+
+  const showRoom = activeDebugParam !== 'objects';
+  const showFurniture = activeDebugParam !== 'objects';
+  const showPortfolioObjects = activeDebugParam !== 'env' && activeDebugParam !== 'furniture';
 
   return (
     <>
@@ -69,15 +74,25 @@ function SceneContent({ onFocusObject, activeObjectId, debugEnvironmentOnly = fa
       />
 
       <Suspense fallback={null}>
-        {/* Environment, Room Geometry & Furniture */}
+        {/* Layered Interior Lighting */}
         <Lighting />
-        <RoomGeometry />
-        <DeskFurniture />
-        <DeskLamp3D />
-        <WindowPane3D />
 
-        {/* Render Portfolio Objects unless debugEnvironmentOnly / ?debug=env is active */}
-        {!shouldHideObjects && (
+        {/* Room Shell Architecture */}
+        {showRoom && <RoomGeometry />}
+
+        {/* Workspace Furniture Architecture */}
+        {showFurniture && (
+          <>
+            <DeskFurniture />
+            <OfficeChair3D />
+            <DeskLamp3D />
+            <WindowPane3D />
+            <Mouse3D />
+          </>
+        )}
+
+        {/* Portfolio Objects */}
+        {showPortfolioObjects && (
           <>
             {/* Wall-Mounted Portfolio Objects */}
             <PhotoFrame3D

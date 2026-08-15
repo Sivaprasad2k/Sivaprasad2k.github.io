@@ -54,19 +54,19 @@ export const Laptop3D: React.FC<Laptop3DProps> = ({ onClick, isFocused = false }
           <meshStandardMaterial color="#111316" roughness={0.4} metalness={0.7} />
         </mesh>
 
-        {/* Emissive Green Workspace Terminal Display Screen */}
+        {/* Subdued Workspace Terminal Display Screen (Zero Green Room Wash) */}
         <mesh position={[0, 0.24, 0.01]}>
           <planeGeometry args={[0.70, 0.43]} />
           <meshStandardMaterial
             color="#060709"
             emissive="#10B981"
-            emissiveIntensity={hovered || isFocused ? 0.35 : 0.15}
+            emissiveIntensity={hovered || isFocused ? 0.15 : 0.08}
             roughness={0.2}
           />
         </mesh>
 
-        {/* Soft Cool Screen Glow Point Light */}
-        <pointLight position={[0, 0.2, 0.15]} intensity={hovered ? 2.0 : 1.2} distance={2.5} color="#10B981" />
+        {/* Subdued Localized Screen Glow Point Light */}
+        <pointLight position={[0, 0.2, 0.1]} intensity={hovered ? 0.8 : 0.4} distance={1.2} color="#10B981" />
       </group>
     </group>
   );
