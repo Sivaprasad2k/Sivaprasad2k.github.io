@@ -47,9 +47,14 @@ function SceneContent({ onFocusObject, activeObjectId, debugEnvironmentOnly = fa
 
   const getObjectDef = (id: RoomObjectType) => ROOM_OBJECTS_DATA.find(o => o.id === id)!;
 
+  // Check if URL has ?debug=env parameter
+  const urlParams = typeof window !== 'undefined' ? new URLSearchParams(window.location.search) : null;
+  const isUrlDebugEnv = urlParams ? urlParams.get('debug') === 'env' : false;
+  const shouldHideObjects = debugEnvironmentOnly || isUrlDebugEnv;
+
   return (
     <>
-      {/* Perspective Camera positioned closer at human eye height (Desk occupies 65-75% width) */}
+      {/* Perspective Camera positioned closer at human eye height (Desk occupies 60-75% width) */}
       <PerspectiveCamera makeDefault fov={52} position={[0, 1.65, 3.4]} />
 
       <OrbitControls
@@ -71,8 +76,8 @@ function SceneContent({ onFocusObject, activeObjectId, debugEnvironmentOnly = fa
         <DeskLamp3D />
         <WindowPane3D />
 
-        {/* Render Portfolio Objects unless debugEnvironmentOnly flag is enabled */}
-        {!debugEnvironmentOnly && (
+        {/* Render Portfolio Objects unless debugEnvironmentOnly / ?debug=env is active */}
+        {!shouldHideObjects && (
           <>
             {/* Wall-Mounted Portfolio Objects */}
             <PhotoFrame3D

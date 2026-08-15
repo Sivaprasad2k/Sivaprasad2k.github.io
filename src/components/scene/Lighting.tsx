@@ -3,14 +3,14 @@ import React from 'react';
 export const Lighting: React.FC = () => {
   return (
     <>
-      {/* Global Soft Ambient Room Illumination */}
-      <ambientLight intensity={0.9} color="#303642" />
+      {/* Layer 1: Global Environment Soft Ambient Illumination */}
+      <ambientLight intensity={1.2} color="#3A4250" />
 
-      {/* Main Directional Soft Window Sunlight/Moonlight Cone */}
+      {/* Layer 2: Soft Room Directional Window Fill Light */}
       <directionalLight
         position={[4, 6, 3]}
-        intensity={0.9}
-        color="#D0DCFF"
+        intensity={1.0}
+        color="#C8D8FF"
         castShadow
         shadow-mapSize-width={2048}
         shadow-mapSize-height={2048}
@@ -22,10 +22,10 @@ export const Lighting: React.FC = () => {
         shadow-camera-bottom={-6}
       />
 
-      {/* Left Articulated Desk Lamp Practical Key PointLight */}
+      {/* Layer 3: Left Articulated Desk Lamp Warm Practical Key Light */}
       <pointLight
         position={[-1.8, 1.6, -0.2]}
-        intensity={5.5}
+        intensity={6.0}
         distance={5.5}
         color="#FFB042"
         castShadow
@@ -33,7 +33,7 @@ export const Lighting: React.FC = () => {
         shadow-mapSize-height={1024}
       />
 
-      {/* Upper-Left Picture Spotlight PointLight */}
+      {/* Layer 4: Upper-Left Picture Spotlight PointLight */}
       <pointLight
         position={[-1.8, 2.6, -1.2]}
         intensity={2.8}

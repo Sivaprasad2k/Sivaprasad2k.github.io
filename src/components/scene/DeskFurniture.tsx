@@ -12,7 +12,7 @@ export const DeskFurniture: React.FC = () => {
         <meshStandardMaterial
           color="#000000"
           transparent
-          opacity={0.55}
+          opacity={0.6}
           roughness={1.0}
         />
       </mesh>
@@ -39,12 +39,12 @@ export const DeskFurniture: React.FC = () => {
       >
         <boxGeometry args={[4.4, 0.08, 0.04]} />
         <meshStandardMaterial
-          color="#251710"
+          color="#1E120B"
           roughness={0.6}
         />
       </mesh>
 
-      {/* Raised Rear Riser Shelf (#251710 Dark Walnut Riser) */}
+      {/* Raised Rear Riser Shelf (#1E120B Dark Walnut Riser) */}
       <mesh
         position={[0, 1.32, -0.5]}
         castShadow
@@ -52,7 +52,7 @@ export const DeskFurniture: React.FC = () => {
       >
         <boxGeometry args={[4.0, 0.08, 0.45]} />
         <meshStandardMaterial
-          color="#251710"
+          color="#1E120B"
           roughness={0.55}
           metalness={0.1}
         />
@@ -64,7 +64,7 @@ export const DeskFurniture: React.FC = () => {
         castShadow
       >
         <boxGeometry args={[0.08, 0.16, 0.4]} />
-        <meshStandardMaterial color="#1D120B" roughness={0.7} />
+        <meshStandardMaterial color="#170E08" roughness={0.7} />
       </mesh>
 
       {/* Riser Shelf Right Support */}
@@ -73,7 +73,7 @@ export const DeskFurniture: React.FC = () => {
         castShadow
       >
         <boxGeometry args={[0.08, 0.16, 0.4]} />
-        <meshStandardMaterial color="#1D120B" roughness={0.7} />
+        <meshStandardMaterial color="#170E08" roughness={0.7} />
       </mesh>
 
       {/* Left Solid Wooden Pillar Leg */}
@@ -84,7 +84,7 @@ export const DeskFurniture: React.FC = () => {
       >
         <boxGeometry args={[0.18, 1.04, 1.4]} />
         <meshStandardMaterial
-          color="#1D120B"
+          color="#170E08"
           roughness={0.7}
         />
       </mesh>
@@ -97,7 +97,7 @@ export const DeskFurniture: React.FC = () => {
       >
         <boxGeometry args={[0.18, 1.04, 1.4]} />
         <meshStandardMaterial
-          color="#1D120B"
+          color="#170E08"
           roughness={0.7}
         />
       </mesh>
