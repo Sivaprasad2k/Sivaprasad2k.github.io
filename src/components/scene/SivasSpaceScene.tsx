@@ -4,6 +4,8 @@ import { PerspectiveCamera, OrbitControls } from '@react-three/drei';
 import { Lighting } from './Lighting';
 import { RoomGeometry } from './RoomGeometry';
 import { DeskFurniture } from './DeskFurniture';
+import { DeskLamp3D } from './DeskLamp3D';
+import { WindowPane3D } from './WindowPane3D';
 
 export const SivasSpaceScene: React.FC = () => {
   return (
@@ -33,6 +35,8 @@ export const SivasSpaceScene: React.FC = () => {
           <Lighting />
           <RoomGeometry />
           <DeskFurniture />
+          <DeskLamp3D />
+          <WindowPane3D />
         </Suspense>
       </Canvas>
     </div>
