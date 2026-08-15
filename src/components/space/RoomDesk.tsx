@@ -22,8 +22,8 @@ export const RoomDesk: React.FC<RoomDeskProps> = ({ parallaxX, parallaxY }) => {
         <div className="absolute top-0 left-0 right-0 h-[1px] bg-[#E8E2D6]/20" />
       </div>
 
-      {/* Main Desktop Surface Platform (#2A1D17 Rich Dark Walnut Furniture) */}
-      <div className="absolute top-[44%] left-0 right-0 h-[14%] bg-[#2A1D17] border-t-2 border-[#4E3527] shadow-2xl overflow-hidden flex items-center justify-between px-8">
+      {/* Main Desktop Surface Platform (#2B1C14 Rich Dark Walnut Furniture) */}
+      <div className="absolute top-[44%] left-0 right-0 h-[14%] bg-[#2B1C14] border-t-2 border-[#4E3527] shadow-2xl overflow-hidden flex items-center justify-between px-8">
         <div className="h-full w-full bg-gradient-to-b from-white/15 via-transparent to-black/60 pointer-events-none" />
         {/* Desk Front Edge Highlight */}
         <div className="absolute top-0 left-0 right-0 h-[1.5px] bg-[#E8E2D6]/30" />
@@ -70,13 +70,13 @@ export const RoomDesk: React.FC<RoomDeskProps> = ({ parallaxX, parallaxY }) => {
       {/* Desk Legs & Solid Frame Structure */}
       <div className="absolute top-[58%] left-[2%] right-[2%] bottom-0 flex justify-between px-6 opacity-95">
         {/* Left Solid Leg Column */}
-        <div className="w-10 h-full bg-[#1A120C] border-r-2 border-[#2A1D17] shadow-2xl flex flex-col justify-between">
-          <div className="w-full h-3 bg-[#2A1D17]" />
+        <div className="w-10 h-full bg-[#1A120C] border-r-2 border-[#2B1C14] shadow-2xl flex flex-col justify-between">
+          <div className="w-full h-3 bg-[#2B1C14]" />
         </div>
 
         {/* Right Solid Leg Column */}
-        <div className="w-10 h-full bg-[#1A120C] border-l-2 border-[#2A1D17] shadow-2xl flex flex-col justify-between">
-          <div className="w-full h-3 bg-[#2A1D17]" />
+        <div className="w-10 h-full bg-[#1A120C] border-l-2 border-[#2B1C14] shadow-2xl flex flex-col justify-between">
+          <div className="w-full h-3 bg-[#2B1C14]" />
         </div>
       </div>
 
