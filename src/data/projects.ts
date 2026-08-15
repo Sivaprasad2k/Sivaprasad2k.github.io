@@ -5,6 +5,54 @@ export interface ArchitectureNode {
   details: string;
 }
 
+export interface WorkflowState {
+  id: string;
+  name: string;
+  allowedTransitions: string[];
+  businessInvariant: string;
+  responsibleModule: string;
+  technicalImplementation: string;
+}
+
+export interface CareerPathState {
+  id: string;
+  name: string;
+  allowedTransitions: string[];
+  invalidTransitions: string[];
+  persistenceModel: string;
+  securityBoundary: string;
+}
+
+export interface RbacRole {
+  role: 'USER' | 'AGENT' | 'ADMIN';
+  title: string;
+  permissions: string[];
+  accessibleOperations: string[];
+  apiBoundaries: string[];
+  securityConstraints: string;
+}
+
+export interface AsyncPipelineStep {
+  id: string;
+  stepNumber: string;
+  name: string;
+  description: string;
+  latencyBoundary: string;
+  executionModel: string;
+  failureIsolation: string;
+  apiBoundary: string;
+}
+
+export interface MlPipelineStep {
+  id: string;
+  stepNumber: string;
+  name: string;
+  inputFormat: string;
+  outputFormat: string;
+  techStack: string;
+  engineeringDetails: string;
+}
+
 export interface Project {
   id: string;
   title: string;
@@ -26,6 +74,13 @@ export interface Project {
   repoUrl?: string;
   liveUrl?: string;
   keySpecs: { label: string; value: string }[];
+
+  // Custom Interactive Data Models
+  workflowStates?: WorkflowState[];
+  stateMachineStates?: CareerPathState[];
+  rbacRoles?: RbacRole[];
+  asyncPipelineSteps?: AsyncPipelineStep[];
+  mlPipelineSteps?: MlPipelineStep[];
 }
 
 export const PROJECTS_DATA: Project[] = [
@@ -74,6 +129,64 @@ export const PROJECTS_DATA: Project[] = [
       { label: "AI Integration", value: "FastAPI Microservice" },
       { label: "Primary Storage", value: "PostgreSQL Relational" },
       { label: "Architecture", value: "Event-Driven & Async" }
+    ],
+    workflowStates: [
+      {
+        id: "PLANNED",
+        name: "PLANNED",
+        allowedTransitions: ["PLANTED"],
+        businessInvariant: "Crop cycle target land parcel & seed specifications must be assigned and validated.",
+        responsibleModule: "CropPlanningService",
+        technicalImplementation: "JPA entity state created with @Enumerated(EnumType.STRING). Initial timestamp assigned."
+      },
+      {
+        id: "PLANTED",
+        name: "PLANTED",
+        allowedTransitions: ["GROWING"],
+        businessInvariant: "Sowing date and initial soil moisture baseline must be registered.",
+        responsibleModule: "TelemetryIngestionModule",
+        technicalImplementation: "Fires CropPlantedEvent to trigger asynchronous irrigation schedule generator."
+      },
+      {
+        id: "GROWING",
+        name: "GROWING",
+        allowedTransitions: ["HEALTH ISSUE", "HARVEST"],
+        businessInvariant: "Daily telemetry ingestion active; moisture & nutrient thresholds monitored continuously.",
+        responsibleModule: "TelemetryWorkerEngine",
+        technicalImplementation: "@Scheduled background workers batch-process incoming IoT telemetry packets."
+      },
+      {
+        id: "HEALTH ISSUE",
+        name: "HEALTH ISSUE",
+        allowedTransitions: ["TREATMENT"],
+        businessInvariant: "Anomaly flag set; crop advisory prediction query automatically dispatched to FastAPI ML service.",
+        responsibleModule: "AgronomicAdvisorClient",
+        technicalImplementation: "@Async HTTP client sends vision/telemetry payload to Python TensorFlow model endpoint."
+      },
+      {
+        id: "TREATMENT",
+        name: "TREATMENT",
+        allowedTransitions: ["RECOVERY"],
+        businessInvariant: "Remedial action plan logged; treatment dosage and supervisor confirmation persisted.",
+        responsibleModule: "TreatmentExecutionService",
+        technicalImplementation: "Transactional DB write updates treatment log table with foreign key linkage."
+      },
+      {
+        id: "RECOVERY",
+        name: "RECOVERY",
+        allowedTransitions: ["GROWING", "HARVEST"],
+        businessInvariant: "Telemetry parameters must return within normal baseline bounds for 72 consecutive hours.",
+        responsibleModule: "BaselineValidationEngine",
+        technicalImplementation: "Evaluates rolling window metrics in PostgreSQL before triggering state promotion."
+      },
+      {
+        id: "HARVEST",
+        name: "HARVEST",
+        allowedTransitions: [],
+        businessInvariant: "Terminal state; yield metrics recorded and historical cycle archived.",
+        responsibleModule: "HarvestReportingService",
+        technicalImplementation: "Marks record as completed and generates operational summary report aggregate."
+      }
     ]
   },
   {
@@ -121,6 +234,56 @@ export const PROJECTS_DATA: Project[] = [
       { label: "Security", value: "Stateless JWT Auth" },
       { label: "UI Layer", value: "React + TypeScript" },
       { label: "State Model", value: "Finite State Automata" }
+    ],
+    stateMachineStates: [
+      {
+        id: "APPLIED",
+        name: "APPLIED",
+        allowedTransitions: ["SCREENING", "REJECTED"],
+        invalidTransitions: ["OFFER", "ACCEPTED"],
+        persistenceModel: "INSERT into job_applications (status='APPLIED', date_applied=NOW())",
+        securityBoundary: "User authentication required; ownership verified via candidate_id claim."
+      },
+      {
+        id: "SCREENING",
+        name: "SCREENING",
+        allowedTransitions: ["INTERVIEW", "REJECTED"],
+        invalidTransitions: ["ACCEPTED"],
+        persistenceModel: "UPDATE job_applications SET status='SCREENING'; INSERT into audit_log",
+        securityBoundary: "Bearer JWT validation; domain service checks valid state machine transition path."
+      },
+      {
+        id: "INTERVIEW",
+        name: "INTERVIEW",
+        allowedTransitions: ["OFFER", "REJECTED"],
+        invalidTransitions: ["APPLIED", "ACCEPTED"],
+        persistenceModel: "INSERT into interview_rounds (application_id, round_number, scheduled_at)",
+        securityBoundary: "Transactional boundary @Transactional; rejects backward jumps without admin override."
+      },
+      {
+        id: "OFFER",
+        name: "OFFER",
+        allowedTransitions: ["ACCEPTED", "REJECTED"],
+        invalidTransitions: ["SCREENING", "APPLIED"],
+        persistenceModel: "UPDATE job_applications SET status='OFFER', offer_salary=?;",
+        securityBoundary: "Field-level validation; salary/perks payload validated against numeric bounds."
+      },
+      {
+        id: "ACCEPTED",
+        name: "ACCEPTED",
+        allowedTransitions: [],
+        invalidTransitions: ["APPLIED", "SCREENING", "INTERVIEW", "OFFER", "REJECTED"],
+        persistenceModel: "UPDATE job_applications SET status='ACCEPTED', closed_at=NOW();",
+        securityBoundary: "Terminal state. Record locked against standard modification."
+      },
+      {
+        id: "REJECTED",
+        name: "REJECTED",
+        allowedTransitions: [],
+        invalidTransitions: ["APPLIED", "SCREENING", "INTERVIEW", "OFFER", "ACCEPTED"],
+        persistenceModel: "UPDATE job_applications SET status='REJECTED', rejection_reason=?;",
+        securityBoundary: "Terminal state. Retains complete audit log of all previous interview stages."
+      }
     ]
   },
   {
@@ -168,6 +331,32 @@ export const PROJECTS_DATA: Project[] = [
       { label: "Search Engine", value: "JPA Dynamic Criteria API" },
       { label: "Deployment", value: "Docker Compose" },
       { label: "Architecture", value: "Layered REST Service" }
+    ],
+    rbacRoles: [
+      {
+        role: "USER",
+        title: "Standard Public User / Buyer",
+        permissions: ["READ_LISTINGS", "CREATE_INQUIRY", "SAVE_FAVORITES"],
+        accessibleOperations: ["GET /api/v1/properties", "GET /api/v1/properties/{id}", "POST /api/v1/inquiries"],
+        apiBoundaries: ["Read-only access to published property catalog", "No mutation of listing details or prices"],
+        securityConstraints: "PermitAll for GET endpoints; authenticated user token required for inquiry creation."
+      },
+      {
+        role: "AGENT",
+        title: "Verified Real Estate Agent / Seller",
+        permissions: ["CREATE_LISTING", "UPDATE_OWN_LISTING", "DELETE_OWN_LISTING", "VIEW_INQUIRIES"],
+        accessibleOperations: ["POST /api/v1/properties", "PUT /api/v1/properties/{id}", "GET /api/v1/agent/inquiries"],
+        apiBoundaries: ["Can create and manage listings owned by their agent_id", "Cannot access other agents' drafts or system metrics"],
+        securityConstraints: "@PreAuthorize(\"hasRole('AGENT') and #agentId == authentication.principal.id\")"
+      },
+      {
+        role: "ADMIN",
+        title: "System Administrator",
+        permissions: ["MANAGE_USERS", "APPROVE_LISTING", "PURGE_LISTING", "VIEW_SYSTEM_AUDIT"],
+        accessibleOperations: ["PATCH /api/v1/admin/properties/{id}/approve", "DELETE /api/v1/admin/users/{id}", "GET /api/v1/admin/metrics"],
+        apiBoundaries: ["Full administrative CRUD over all domain entities and user profiles", "Unrestricted system endpoint access"],
+        securityConstraints: "@PreAuthorize(\"hasRole('ADMIN')\") enforced at method & endpoint security filter levels."
+      }
     ]
   },
   {
@@ -209,6 +398,58 @@ export const PROJECTS_DATA: Project[] = [
       { label: "Execution Model", value: "Non-Blocking Asyncio" },
       { label: "Validation", value: "Pydantic Schemas" },
       { label: "Status", value: "Active Development" }
+    ],
+    asyncPipelineSteps: [
+      {
+        id: "STEP-1",
+        stepNumber: "01",
+        name: "REQUEST INGESTION",
+        description: "Client submits prompt payload to FastAPI endpoint. Immediate 202 Accepted response returned with task token.",
+        latencyBoundary: "< 15ms",
+        executionModel: "Synchronous HTTP Handler",
+        failureIsolation: "Payload validation via Pydantic; rejects malformed prompts instantly.",
+        apiBoundary: "POST /api/v1/assistant/tasks"
+      },
+      {
+        id: "STEP-2",
+        stepNumber: "02",
+        name: "TASK QUEUE ENQUEUE",
+        description: "Task object pushed onto asyncio non-blocking queue. Main thread remains free to accept incoming API requests.",
+        latencyBoundary: "< 5ms",
+        executionModel: "In-Memory Asyncio Queue",
+        failureIsolation: "Queue buffer limit protection prevents memory exhaustion.",
+        apiBoundary: "Internal Async Queue Router"
+      },
+      {
+        id: "STEP-3",
+        stepNumber: "03",
+        name: "MODEL ROUTER DISPATCH",
+        description: "Worker pulls task, formats prompt context frame, and selects appropriate LLM provider client.",
+        latencyBoundary: "< 10ms",
+        executionModel: "Background Task Worker",
+        failureIsolation: "Context framing fallback defaults if sub-prompt exceeds token budget.",
+        apiBoundary: "LLM Model Selection Strategy"
+      },
+      {
+        id: "STEP-4",
+        stepNumber: "04",
+        name: "EXTERNAL LLM PROVIDER",
+        description: "Asynchronous HTTP call issued to external AI API endpoint with timeout and exponential backoff retry.",
+        latencyBoundary: "800ms - 2500ms",
+        executionModel: "Async HTTP Client (httpx)",
+        failureIsolation: "Circuit breaker pattern handles upstream timeout or rate-limit HTTP 429.",
+        apiBoundary: "HTTPS / REST to Provider API"
+      },
+      {
+        id: "STEP-5",
+        stepNumber: "05",
+        name: "RESPONSE SYNTHESIS",
+        description: "Raw LLM output parsed against strict Pydantic JSON schema, structured, and saved to task result store.",
+        latencyBoundary: "< 25ms",
+        executionModel: "Pydantic Schema Validator",
+        failureIsolation: "Schema parsing errors trigger retry prompt synthesis with error feedback loop.",
+        apiBoundary: "GET /api/v1/assistant/tasks/{id}/result"
+      }
     ]
   },
   {
@@ -241,6 +482,62 @@ export const PROJECTS_DATA: Project[] = [
       { label: "Stack", value: "Python / TensorFlow" },
       { label: "Model Type", value: "Keras Neural Network" },
       { label: "Task", value: "Infrastructure Classification" }
+    ],
+    mlPipelineSteps: [
+      {
+        id: "ML-1",
+        stepNumber: "01",
+        name: "RAW DATASET INGESTION",
+        inputFormat: "Raw Remote Imagery & Tabular GIS Data",
+        outputFormat: "Structured Data Frames",
+        techStack: "Python, Pandas, OpenCV",
+        engineeringDetails: "Ingests spatial tile data and tabular road/building tags with validation checks."
+      },
+      {
+        id: "ML-2",
+        stepNumber: "02",
+        name: "DATA PREPROCESSING & CLEANING",
+        inputFormat: "Structured Data Frames",
+        outputFormat: "Cleaned Feature Sets",
+        techStack: "NumPy, Scikit-learn",
+        engineeringDetails: "Removes spatial outliers, fills missing telemetry values, and standardizes image resolution dimensions."
+      },
+      {
+        id: "ML-3",
+        stepNumber: "03",
+        name: "FEATURE EXTRACTION & SCALING",
+        inputFormat: "Cleaned Feature Sets",
+        outputFormat: "Normalized Tensor Arrays [0.0, 1.0]",
+        techStack: "StandardScaler, MinMaxScaler",
+        engineeringDetails: "Applies MinMax scaling to tabular features and normalizes RGB pixel values for optimal gradient descent."
+      },
+      {
+        id: "ML-4",
+        stepNumber: "04",
+        name: "MODEL ARCHITECTURE & TRAINING",
+        inputFormat: "Normalized Tensor Arrays",
+        outputFormat: "Trained Weight Models (.h5)",
+        techStack: "TensorFlow 2.x, Keras Sequential API",
+        engineeringDetails: "Constructed Multi-Layer Perceptron / CNN architecture with Dropout regularization to prevent overfitting."
+      },
+      {
+        id: "ML-5",
+        stepNumber: "05",
+        name: "CLASSIFICATION INFERENCE",
+        inputFormat: "Unseen Validation Tiles",
+        outputFormat: "Probability Multi-Class Vectors",
+        techStack: "Keras model.predict()",
+        engineeringDetails: "Evaluates test images against classified categories: Paved Road, Unpaved Track, Water Body, Built-up Structure."
+      },
+      {
+        id: "ML-6",
+        stepNumber: "06",
+        name: "METRICS EVALUATION & BOUNDS",
+        inputFormat: "Prediction Vectors vs Ground Truth",
+        outputFormat: "Confusion Matrix, F1 Score Report",
+        techStack: "Scikit-Learn Classification Report",
+        engineeringDetails: "Generates precision, recall, and ROC curve metrics to establish operational prediction boundaries."
+      }
     ]
   }
 ];
