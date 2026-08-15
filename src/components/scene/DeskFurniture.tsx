@@ -3,6 +3,20 @@ import React from 'react';
 export const DeskFurniture: React.FC = () => {
   return (
     <group position={[0, 0, 0]}>
+      {/* Contact Shadow Plane under Desk Legs on Rug/Floor */}
+      <mesh
+        rotation-x={-Math.PI / 2}
+        position={[0, 0.003, 0]}
+      >
+        <planeGeometry args={[4.8, 1.8]} />
+        <meshStandardMaterial
+          color="#000000"
+          transparent
+          opacity={0.55}
+          roughness={1.0}
+        />
+      </mesh>
+
       {/* Main Desktop Surface Slab (#3A2519 Rich Dark Walnut) */}
       <mesh
         position={[0, 1.1, 0]}

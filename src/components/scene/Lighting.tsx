@@ -3,14 +3,14 @@ import React from 'react';
 export const Lighting: React.FC = () => {
   return (
     <>
-      {/* Ambient Room Lighting - Neutral Soft Fill */}
-      <ambientLight intensity={0.85} color="#283040" />
+      {/* Global Soft Ambient Room Illumination */}
+      <ambientLight intensity={0.9} color="#303642" />
 
-      {/* Main Directional Window Sunlight/Moonlight Cone */}
+      {/* Main Directional Soft Window Sunlight/Moonlight Cone */}
       <directionalLight
         position={[4, 6, 3]}
-        intensity={0.85}
-        color="#D6E2FF"
+        intensity={0.9}
+        color="#D0DCFF"
         castShadow
         shadow-mapSize-width={2048}
         shadow-mapSize-height={2048}
@@ -25,7 +25,7 @@ export const Lighting: React.FC = () => {
       {/* Left Articulated Desk Lamp Practical Key PointLight */}
       <pointLight
         position={[-1.8, 1.6, -0.2]}
-        intensity={6.5}
+        intensity={5.5}
         distance={5.5}
         color="#FFB042"
         castShadow
