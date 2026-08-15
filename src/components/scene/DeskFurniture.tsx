@@ -8,7 +8,7 @@ export const DeskFurniture: React.FC = () => {
         rotation-x={-Math.PI / 2}
         position={[0, 0.003, 0]}
       >
-        <planeGeometry args={[4.8, 1.8]} />
+        <planeGeometry args={[5.0, 2.0]} />
         <meshStandardMaterial
           color="#000000"
           transparent
@@ -17,7 +17,7 @@ export const DeskFurniture: React.FC = () => {
         />
       </mesh>
 
-      {/* Main Desktop Surface Slab (#3A2519 Rich Dark Walnut) */}
+      {/* Main Desktop Surface Slab (#4A3225 Rich Dark Walnut) */}
       <mesh
         position={[0, 1.1, 0]}
         castShadow
@@ -25,7 +25,7 @@ export const DeskFurniture: React.FC = () => {
       >
         <boxGeometry args={[4.4, 0.12, 1.6]} />
         <meshStandardMaterial
-          color="#3A2519"
+          color="#4A3225"
           roughness={0.5}
           metalness={0.15}
         />
@@ -39,12 +39,12 @@ export const DeskFurniture: React.FC = () => {
       >
         <boxGeometry args={[4.4, 0.08, 0.04]} />
         <meshStandardMaterial
-          color="#1E120B"
+          color="#322016"
           roughness={0.6}
         />
       </mesh>
 
-      {/* Raised Rear Riser Shelf (#1E120B Dark Walnut Riser) */}
+      {/* Raised Rear Riser Shelf (#322016 Dark Walnut Riser) */}
       <mesh
         position={[0, 1.32, -0.5]}
         castShadow
@@ -52,7 +52,7 @@ export const DeskFurniture: React.FC = () => {
       >
         <boxGeometry args={[4.0, 0.08, 0.45]} />
         <meshStandardMaterial
-          color="#1E120B"
+          color="#322016"
           roughness={0.55}
           metalness={0.1}
         />
@@ -64,7 +64,7 @@ export const DeskFurniture: React.FC = () => {
         castShadow
       >
         <boxGeometry args={[0.08, 0.16, 0.4]} />
-        <meshStandardMaterial color="#170E08" roughness={0.7} />
+        <meshStandardMaterial color="#261810" roughness={0.7} />
       </mesh>
 
       {/* Riser Shelf Right Support */}
@@ -73,7 +73,7 @@ export const DeskFurniture: React.FC = () => {
         castShadow
       >
         <boxGeometry args={[0.08, 0.16, 0.4]} />
-        <meshStandardMaterial color="#170E08" roughness={0.7} />
+        <meshStandardMaterial color="#261810" roughness={0.7} />
       </mesh>
 
       {/* Left Solid Wooden Pillar Leg */}
@@ -84,7 +84,7 @@ export const DeskFurniture: React.FC = () => {
       >
         <boxGeometry args={[0.18, 1.04, 1.4]} />
         <meshStandardMaterial
-          color="#170E08"
+          color="#261810"
           roughness={0.7}
         />
       </mesh>
@@ -97,7 +97,7 @@ export const DeskFurniture: React.FC = () => {
       >
         <boxGeometry args={[0.18, 1.04, 1.4]} />
         <meshStandardMaterial
-          color="#170E08"
+          color="#261810"
           roughness={0.7}
         />
       </mesh>
