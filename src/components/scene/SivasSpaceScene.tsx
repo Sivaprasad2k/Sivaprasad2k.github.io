@@ -1,6 +1,7 @@
 import React, { Suspense, useRef } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { PerspectiveCamera, OrbitControls } from '@react-three/drei';
+import * as THREE from 'three';
 import type { OrbitControls as OrbitControlsImpl } from 'three-stdlib';
 import type { RoomObjectType, RoomObjectDefinition } from '../../data/room';
 import { ROOM_OBJECTS_DATA } from '../../data/room';
@@ -23,7 +24,7 @@ import { ServerRack3D } from './ServerRack3D';
 interface SivasSpaceSceneProps {
   onFocusObject: (obj: RoomObjectDefinition) => void;
   activeObjectId: RoomObjectType | null;
-  debugMode?: 'env' | 'furniture' | 'objects' | 'full' | null;
+  debugMode?: 'env' | 'furniture' | 'objects' | 'lighting' | 'full' | null;
 }
 
 const OBJECT_CAMERA_TARGETS: Record<RoomObjectType, { position: [number, number, number]; target: [number, number, number] }> = {
@@ -49,10 +50,11 @@ function SceneContent({ onFocusObject, activeObjectId, debugMode }: SivasSpaceSc
 
   const getObjectDef = (id: RoomObjectType) => ROOM_OBJECTS_DATA.find(o => o.id === id)!;
 
-  // Determine active debug mode from prop or URL parameter (?debug=env, ?debug=furniture, ?debug=objects)
+  // Determine active debug mode from prop or URL parameter (?debug=env, ?debug=furniture, ?debug=objects, ?debug=lighting)
   const urlParams = typeof window !== 'undefined' ? new URLSearchParams(window.location.search) : null;
-  const activeDebugParam = debugMode || (urlParams ? (urlParams.get('debug') as 'env' | 'furniture' | 'objects') : null);
+  const activeDebugParam = debugMode || (urlParams ? (urlParams.get('debug') as 'env' | 'furniture' | 'objects' | 'lighting') : null);
 
+  const isLightingDebug = activeDebugParam === 'lighting';
   const showRoom = activeDebugParam !== 'objects';
   const showFurniture = activeDebugParam !== 'objects';
   const showPortfolioObjects = activeDebugParam !== 'env' && activeDebugParam !== 'furniture';
@@ -75,7 +77,7 @@ function SceneContent({ onFocusObject, activeObjectId, debugMode }: SivasSpaceSc
 
       <Suspense fallback={null}>
         {/* Layered Interior Lighting */}
-        <Lighting />
+        <Lighting debugLighting={isLightingDebug} />
 
         {/* Room Shell Architecture */}
         {showRoom && <RoomGeometry />}
@@ -184,7 +186,13 @@ export const SivasSpaceScene: React.FC<SivasSpaceSceneProps> = (props) => {
     <div className="relative w-full h-screen bg-[#08090B] overflow-hidden select-none">
       <Canvas
         shadows
-        gl={{ antialias: true, alpha: false }}
+        gl={{
+          antialias: true,
+          alpha: false,
+          toneMapping: THREE.ACESFilmicToneMapping,
+          toneMappingExposure: 1.25,
+          outputColorSpace: THREE.SRGBColorSpace
+        }}
         className="w-full h-full"
       >
         <SceneContent {...props} />

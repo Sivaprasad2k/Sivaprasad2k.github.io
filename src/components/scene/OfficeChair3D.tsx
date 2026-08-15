@@ -17,38 +17,38 @@ export const OfficeChair3D: React.FC = () => {
         />
       </mesh>
 
-      {/* Seat Cushion (#1E2228 Dark Fabric) */}
+      {/* Seat Cushion (#2A2F38 Dark Charcoal Fabric) */}
       <mesh position={[0, 0, 0]} castShadow receiveShadow>
         <boxGeometry args={[0.62, 0.08, 0.60]} />
-        <meshStandardMaterial color="#1E2228" roughness={0.8} metalness={0.1} />
+        <meshStandardMaterial color="#2A2F38" roughness={0.8} metalness={0.1} />
       </mesh>
 
-      {/* Ergonomic Curved Mesh Backrest */}
+      {/* Ergonomic Curved Mesh Backrest (#22262E) */}
       <mesh position={[0, 0.38, 0.28]} rotation-x={-0.1} castShadow receiveShadow>
         <boxGeometry args={[0.58, 0.68, 0.06]} />
-        <meshStandardMaterial color="#171A1F" roughness={0.85} metalness={0.1} />
+        <meshStandardMaterial color="#22262E" roughness={0.85} metalness={0.1} />
       </mesh>
 
       {/* Backrest Metal Support Posts */}
       <mesh position={[-0.2, 0.15, 0.24]} rotation-x={-0.1} castShadow>
         <cylinderGeometry args={[0.015, 0.015, 0.3, 16]} />
-        <meshStandardMaterial color="#20252B" roughness={0.3} metalness={0.8} />
+        <meshStandardMaterial color="#383E48" roughness={0.3} metalness={0.8} />
       </mesh>
       <mesh position={[0.2, 0.15, 0.24]} rotation-x={-0.1} castShadow>
         <cylinderGeometry args={[0.015, 0.015, 0.3, 16]} />
-        <meshStandardMaterial color="#20252B" roughness={0.3} metalness={0.8} />
+        <meshStandardMaterial color="#383E48" roughness={0.3} metalness={0.8} />
       </mesh>
 
       {/* Central Support Metal Cylinder Stem */}
       <mesh position={[0, -0.22, 0]} castShadow>
         <cylinderGeometry args={[0.035, 0.035, 0.36, 16]} />
-        <meshStandardMaterial color="#20252B" roughness={0.3} metalness={0.8} />
+        <meshStandardMaterial color="#383E48" roughness={0.3} metalness={0.8} />
       </mesh>
 
       {/* 5-Star Caster Base Hub */}
       <mesh position={[0, -0.40, 0]} castShadow>
         <cylinderGeometry args={[0.08, 0.08, 0.04, 16]} />
-        <meshStandardMaterial color="#171A1F" roughness={0.6} metalness={0.5} />
+        <meshStandardMaterial color="#22262E" roughness={0.6} metalness={0.5} />
       </mesh>
 
       {/* 5 Radial Leg Arms */}
@@ -56,7 +56,7 @@ export const OfficeChair3D: React.FC = () => {
         <group key={idx} rotation-y={angle}>
           <mesh position={[0.18, -0.41, 0]} rotation-z={-0.1} castShadow>
             <cylinderGeometry args={[0.018, 0.018, 0.34, 12]} rotation-z={Math.PI / 2} />
-            <meshStandardMaterial color="#171A1F" roughness={0.6} metalness={0.5} />
+            <meshStandardMaterial color="#22262E" roughness={0.6} metalness={0.5} />
           </mesh>
         </group>
       ))}

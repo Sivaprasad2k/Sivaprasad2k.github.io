@@ -37,19 +37,19 @@ export const ProjectBook3D: React.FC<ProjectBook3DProps> = ({
         document.body.style.cursor = 'auto';
       }}
     >
-      {/* Dark Graphite Cover Mesh (#181A1D) with Hover/Focus Glow */}
+      {/* Dark Hardcover Binding Mesh (#22252A) with Hover/Focus Glow */}
       <mesh castShadow receiveShadow>
         <boxGeometry args={isStanding ? [0.06, 0.32, 0.22] : [0.28, 0.05, 0.20]} />
         <meshStandardMaterial
-          color={isFocused ? '#65B8FF' : hovered ? '#252930' : '#181A1D'}
+          color={isFocused ? '#65B8FF' : hovered ? '#2D323A' : '#22252A'}
           emissive={hovered || isFocused ? '#65B8FF' : '#000000'}
-          emissiveIntensity={isFocused ? 0.35 : hovered ? 0.2 : 0}
+          emissiveIntensity={isFocused ? 0.30 : hovered ? 0.15 : 0}
           roughness={0.5}
           metalness={0.1}
         />
       </mesh>
 
-      {/* Dark Spine Strip (#25282D) */}
+      {/* Dark Spine Strip (#2E333C) */}
       <mesh
         position={
           isStanding
@@ -58,10 +58,10 @@ export const ProjectBook3D: React.FC<ProjectBook3DProps> = ({
         }
       >
         <boxGeometry args={isStanding ? [0.008, 0.32, 0.22] : [0.015, 0.05, 0.20]} />
-        <meshStandardMaterial color="#25282D" roughness={0.7} />
+        <meshStandardMaterial color="#2E333C" roughness={0.7} />
       </mesh>
 
-      {/* White Paper Page Block (#E8E2D6) */}
+      {/* White Paper Page Block (#EEE8DD) */}
       <mesh
         position={
           isStanding
@@ -70,7 +70,19 @@ export const ProjectBook3D: React.FC<ProjectBook3DProps> = ({
         }
       >
         <boxGeometry args={isStanding ? [0.045, 0.30, 0.20] : [0.26, 0.038, 0.18]} />
-        <meshStandardMaterial color="#E8E2D6" roughness={0.9} />
+        <meshStandardMaterial color="#EEE8DD" roughness={0.85} />
+      </mesh>
+
+      {/* Page Edge Texture Accent Line */}
+      <mesh
+        position={
+          isStanding
+            ? [0.033, 0, 0.01]
+            : [0.01, 0, 0.101]
+        }
+      >
+        <planeGeometry args={isStanding ? [0.20, 0.28] : [0.24, 0.03]} />
+        <meshStandardMaterial color="#DED8CC" roughness={0.9} />
       </mesh>
     </group>
   );
