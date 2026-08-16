@@ -37,21 +37,21 @@ export function DomainsSection() {
   ];
 
   return (
-    <section className="container" style={{ width: '100%', padding: '24px var(--container-padding)', position: 'relative' }}>
+    <section className="container" style={{ width: '100%', padding: '20px var(--container-padding)', position: 'relative' }}>
       {/* Header & Central Core Badge */}
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 28, flexWrap: 'wrap', gap: 12 }}>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 20, flexWrap: 'wrap', gap: 10 }}>
         <div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 2 }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 2 }}>
             <span style={{ color: 'var(--accent-gold)', fontSize: '0.85rem' }}>◆</span>
             <span className="label-editorial" style={{ marginBottom: 0 }}>04 // ENGINEERING TOPOLOGY</span>
           </div>
-          <h2 className="section-headline" style={{ fontSize: 'clamp(1.8rem, 3.5vw, 2.8rem)', marginBottom: 0 }}>
+          <h2 className="section-headline" style={{ fontSize: 'clamp(1.6rem, 3.2vw, 2.8rem)', marginBottom: 0 }}>
             Domains & Matrix
           </h2>
         </div>
 
         {/* Central Core Badge */}
-        <div style={{ background: 'var(--bg-dark)', color: '#FFFFFF', padding: '6px 14px', borderRadius: 2, fontFamily: 'var(--font-mono)', fontSize: '0.75rem', fontWeight: 700, letterSpacing: '0.12em' }}>
+        <div style={{ background: 'var(--bg-dark)', color: '#FFFFFF', padding: '6px 12px', borderRadius: 2, fontFamily: 'var(--font-mono)', fontSize: '0.72rem', fontWeight: 700, letterSpacing: '0.12em' }}>
           CORE // ENGINEERING
         </div>
       </div>
@@ -60,8 +60,8 @@ export function DomainsSection() {
       <div style={{
         position: 'relative',
         display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-        gap: 20,
+        gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+        gap: 16,
         transform: `translate3d(${parallax.x * 0.3}px, ${parallax.y * 0.3}px, 0)`,
         transition: 'transform 120ms cubic-bezier(0,0,0.2,1)'
       }}>
@@ -118,14 +118,14 @@ export function DomainsSection() {
                 borderBottom: `1px solid ${isActive ? d.accent : 'var(--border)'}`,
                 borderTop: `4px solid ${d.accent}`,
                 borderRadius: 'var(--radius-sm)',
-                padding: '24px 28px',
+                padding: 'clamp(18px, 2.5vw, 24px)',
                 cursor: 'pointer',
                 transition: 'all 200ms cubic-bezier(0.2, 0, 0.2, 1)',
                 boxShadow: isActive ? '0 12px 32px rgba(18, 18, 18, 0.08)' : 'none'
               }}
             >
               <div className="flex items-center justify-between gap-2 mb-2">
-                <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.72rem', color: d.accent, fontWeight: 700 }}>
+                <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.7rem', color: d.accent, fontWeight: 700 }}>
                   NODE 0{i + 1}
                 </span>
                 <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.68rem', color: 'var(--text-muted)' }}>
@@ -135,7 +135,7 @@ export function DomainsSection() {
 
               <h3 style={{
                 fontFamily: 'var(--font-display)',
-                fontSize: '1.35rem',
+                fontSize: 'clamp(1.15rem, 2vw, 1.35rem)',
                 fontWeight: 800,
                 color: isActive ? d.accent : 'var(--text-primary)',
                 marginBottom: 4,
@@ -144,12 +144,12 @@ export function DomainsSection() {
                 {d.title}
               </h3>
 
-              <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.8rem', color: 'var(--text-secondary)', marginBottom: 16 }}>
+              <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.78rem', color: 'var(--text-secondary)', marginBottom: 14 }}>
                 {d.subtitle}
               </p>
 
               {/* Categorized Capability Badges */}
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, paddingTop: 12, borderTop: '1px solid var(--border)' }}>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 5, paddingTop: 10, borderTop: '1px solid var(--border)' }}>
                 {d.skills.map(s => (
                   <span key={s} className="skill-chip">
                     {s}

@@ -28,23 +28,23 @@ export function TerminalWidget() {
         border: '1px solid var(--border-strong)',
         boxShadow: '0 16px 40px rgba(18, 18, 18, 0.25)',
         fontFamily: 'var(--font-mono)',
-        fontSize: '0.78rem',
+        fontSize: 'clamp(0.72rem, 1.8vw, 0.78rem)',
         overflow: 'hidden'
       }}
     >
       {/* Terminal Title Bar */}
-      <div style={{ background: '#1A202C', padding: '8px 14px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', borderBottom: '1px solid #2D3748' }}>
+      <div style={{ background: '#1A202C', padding: '8px 12px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', borderBottom: '1px solid #2D3748', flexWrap: 'wrap', gap: 6 }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
           <span style={{ width: 8, height: 8, borderRadius: '50%', background: 'var(--accent-red)' }} />
           <span style={{ width: 8, height: 8, borderRadius: '50%', background: '#ECC94B' }} />
           <span style={{ width: 8, height: 8, borderRadius: '50%', background: '#48BB78' }} />
-          <span style={{ marginLeft: 8, color: '#E2E8F0', fontWeight: 600, fontSize: '0.72rem' }}>
+          <span style={{ marginLeft: 6, color: '#E2E8F0', fontWeight: 600, fontSize: '0.7rem' }}>
             ENGINEERING TELEMETRY v2.6
           </span>
         </div>
 
         {/* Tab Switcher */}
-        <div style={{ display: 'flex', gap: 10, fontSize: '0.68rem' }}>
+        <div style={{ display: 'flex', gap: 8, fontSize: '0.68rem' }}>
           <button
             onClick={() => setActiveTab('TELEMETRY')}
             style={{ background: 'none', border: 'none', color: activeTab === 'TELEMETRY' ? 'var(--accent-red)' : '#718096', cursor: 'pointer', fontWeight: 600 }}
@@ -61,16 +61,16 @@ export function TerminalWidget() {
       </div>
 
       {/* Terminal Body */}
-      <div style={{ padding: '16px 18px', minHeight: 220, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+      <div style={{ padding: '14px 16px', minHeight: 190, display: 'flex', flexDirection: 'column', justifyContent: 'space-between', overflowX: 'auto' }}>
         {activeTab === 'TELEMETRY' ? (
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
             <div style={{ color: '#48BB78', display: 'flex', alignItems: 'center', gap: 6 }}>
               <span>●</span> STATUS: AVAILABLE FOR SOFTWARE ROLES
             </div>
             <div style={{ color: '#E2E8F0' }}>
               $ sysctl -a | grep siva.engineering
             </div>
-            <div style={{ color: '#718096', paddingLeft: 12 }}>
+            <div style={{ color: '#718096', paddingLeft: 10 }}>
               CORE: Java 21 / Spring Boot 3 / PostgreSQL<br />
               PIPELINE: FastAPI / Python Inference / Async Tasks<br />
               UX: React 19 / TypeScript / Swiss Brutalism
@@ -81,7 +81,7 @@ export function TerminalWidget() {
             </div>
           </div>
         ) : (
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
             <div style={{ color: 'var(--accent-gold)' }}>
               [ METRICS & PERFORMANCE INVARIANTS ]
             </div>
@@ -91,14 +91,14 @@ export function TerminalWidget() {
               STATE_AUTOMATA    : Strict invariant validation<br />
               ASYNC_QUEUE       : Telemetry worker pipeline
             </div>
-            <div style={{ color: '#48BB78', marginTop: 6 }}>
+            <div style={{ color: '#48BB78', marginTop: 4 }}>
               PASSED 48 SYSTEM CHECKS (100% HEALTH)
             </div>
           </div>
         )}
 
         {/* ASCII Prompt Line */}
-        <div style={{ borderTop: '1px solid #2D3748', paddingTop: 10, marginTop: 12, display: 'flex', alignItems: 'center', gap: 6, color: 'var(--accent-red)' }}>
+        <div style={{ borderTop: '1px solid #2D3748', paddingTop: 8, marginTop: 10, display: 'flex', alignItems: 'center', gap: 6, color: 'var(--accent-red)' }}>
           <span>siva@dossier:~$</span>
           <span style={{ color: '#E2E8F0', animation: 'blink 1s infinite' }}>_</span>
         </div>

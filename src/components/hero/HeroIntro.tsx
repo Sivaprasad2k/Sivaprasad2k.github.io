@@ -8,18 +8,18 @@ export function HeroIntro({ onNavigateNext }: HeroIntroProps) {
   const parallax = usePointerParallax();
 
   return (
-    <section className="container" style={{ width: '100%', height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center', position: 'relative' }}>
+    <section className="container" style={{ width: '100%', minHeight: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center', position: 'relative', padding: '24px var(--container-padding)' }}>
       {/* Main Hero Content */}
       <div style={{
         transform: `translate3d(${parallax.x * 0.8}px, ${parallax.y * 0.8}px, 0)`,
         transition: 'transform 120ms cubic-bezier(0,0,0.2,1)',
-        marginBottom: 32
+        marginBottom: 'clamp(20px, 4vh, 36px)'
       }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 20 }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 16 }}>
           <span style={{ color: 'var(--accent-gold)', fontSize: '0.85rem' }}>◆</span>
           <span style={{
             fontFamily: 'var(--font-mono)',
-            fontSize: '0.82rem',
+            fontSize: 'clamp(0.72rem, 1.8vw, 0.82rem)',
             fontWeight: 600,
             letterSpacing: '0.14em',
             color: 'var(--accent-slate)',
@@ -31,13 +31,14 @@ export function HeroIntro({ onNavigateNext }: HeroIntroProps) {
 
         {/* Engineering Lifecycle Pipeline Headline */}
         <h1 style={{
-          fontSize: 'clamp(2.4rem, 6.5vw, 5.2rem)',
+          fontSize: 'clamp(1.9rem, 6vw, 4.8rem)',
           fontFamily: 'var(--font-display)',
           fontWeight: 800,
           letterSpacing: '-0.04em',
           lineHeight: 1.08,
           maxWidth: 1060,
-          color: 'var(--text-primary)'
+          color: 'var(--text-primary)',
+          wordBreak: 'break-word'
         }}>
           IDEA → SRS → SSD → <br />
           <span style={{ color: 'var(--accent-red)' }}>IMPLEMENTATION → TESTING → DEPLOYMENT</span>
@@ -51,7 +52,7 @@ export function HeroIntro({ onNavigateNext }: HeroIntroProps) {
         maxWidth: 640
       }}>
         <p style={{
-          fontSize: 'clamp(1.15rem, 2vw, 1.4rem)',
+          fontSize: 'clamp(1rem, 2.2vw, 1.35rem)',
           color: 'var(--text-secondary)',
           lineHeight: 1.6,
           fontWeight: 500
@@ -61,7 +62,7 @@ export function HeroIntro({ onNavigateNext }: HeroIntroProps) {
       </div>
 
       {/* Interactive Magnetic Scroll Trigger */}
-      <div style={{ position: 'absolute', bottom: 40, left: 32 }}>
+      <div style={{ position: 'absolute', bottom: 32, left: 'var(--container-padding)' }}>
         <button
           onClick={onNavigateNext}
           style={{

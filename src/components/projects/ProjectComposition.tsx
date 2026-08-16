@@ -15,30 +15,31 @@ export function ProjectComposition() {
   };
 
   return (
-    <section className="container" style={{ width: '100%', padding: '20px var(--container-padding)', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+    <section className="container" style={{ width: '100%', padding: '16px var(--container-padding)', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
       {/* Header & Quick Selector Ribbon */}
-      <div style={{ marginBottom: 20 }}>
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 12, marginBottom: 12 }}>
+      <div style={{ marginBottom: 16 }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 10, marginBottom: 10 }}>
           <div>
             <span className="label-editorial" style={{ marginBottom: 2 }}>
               <span style={{ color: 'var(--accent-gold)' }}>◆</span> PORTFOLIO WORKBENCH
             </span>
-            <h2 className="section-headline" style={{ fontSize: 'clamp(1.6rem, 3vw, 2.4rem)', marginBottom: 0 }}>
+            <h2 className="section-headline" style={{ fontSize: 'clamp(1.5rem, 3vw, 2.4rem)', marginBottom: 0 }}>
               Selected Work
             </h2>
           </div>
 
           {/* Stepper Controls */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: 12, fontFamily: 'var(--font-mono)', fontSize: '0.8rem' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 10, fontFamily: 'var(--font-mono)', fontSize: '0.78rem' }}>
             <button
               onClick={prevProject}
               style={{
                 background: 'transparent',
                 border: '1px solid var(--border-strong)',
                 borderRadius: 3,
-                padding: '6px 14px',
+                padding: '6px 12px',
                 color: 'var(--text-primary)',
-                cursor: 'pointer'
+                cursor: 'pointer',
+                minHeight: 36
               }}
             >
               ← PREV
@@ -52,9 +53,10 @@ export function ProjectComposition() {
                 background: 'transparent',
                 border: '1px solid var(--border-strong)',
                 borderRadius: 3,
-                padding: '6px 14px',
+                padding: '6px 12px',
                 color: 'var(--text-primary)',
-                cursor: 'pointer'
+                cursor: 'pointer',
+                minHeight: 36
               }}
             >
               NEXT →
@@ -62,8 +64,8 @@ export function ProjectComposition() {
           </div>
         </div>
 
-        {/* Project Quick Selector Ribbon */}
-        <div style={{ display: 'flex', gap: 8, overflowX: 'auto', paddingBottom: 6 }}>
+        {/* Project Quick Selector Ribbon (Touch Scrollable) */}
+        <div style={{ display: 'flex', gap: 6, overflowX: 'auto', paddingBottom: 6, WebkitOverflowScrolling: 'touch' }}>
           {PROJECTS_DATA.map((p, i) => {
             const isSelected = i === activeIndex;
             return (
@@ -76,14 +78,15 @@ export function ProjectComposition() {
                   borderColor: isSelected ? 'var(--accent-red)' : 'var(--border)',
                   borderLeft: `3px solid ${isSelected ? 'var(--accent-red)' : 'transparent'}`,
                   borderRadius: 2,
-                  padding: '6px 14px',
+                  padding: '6px 12px',
                   fontFamily: 'var(--font-mono)',
-                  fontSize: '0.74rem',
+                  fontSize: '0.72rem',
                   fontWeight: isSelected ? 700 : 500,
                   color: isSelected ? 'var(--accent-red)' : 'var(--text-secondary)',
                   cursor: 'pointer',
                   whiteSpace: 'nowrap',
-                  transition: 'all 160ms ease'
+                  transition: 'all 160ms ease',
+                  flexShrink: 0
                 }}
               >
                 0{i + 1} {p.title.toUpperCase()}

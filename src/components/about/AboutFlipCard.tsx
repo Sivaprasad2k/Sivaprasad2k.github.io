@@ -39,7 +39,7 @@ export function AboutFlipCard({
       style={{
         width: '100%',
         maxWidth: 1080,
-        minHeight: 400,
+        minHeight: 380,
         margin: '0 auto',
         cursor: 'pointer',
         outline: 'none'
@@ -63,7 +63,7 @@ export function AboutFlipCard({
             width: '100%',
             height: '100%',
             background: 'var(--bg-primary)',
-            padding: 'clamp(24px, 4vw, 36px) clamp(24px, 4vw, 44px)',
+            padding: 'clamp(20px, 3.5vw, 36px) clamp(20px, 3.5vw, 44px)',
             display: 'flex',
             flexDirection: 'column',
             justify: 'space-between',
@@ -72,12 +72,12 @@ export function AboutFlipCard({
         >
           <div>
             {/* Header & Degree */}
-            <div className="flex items-center justify-between gap-4 mb-4" style={{ flexWrap: 'wrap' }}>
+            <div className="flex items-center justify-between gap-4 mb-3" style={{ flexWrap: 'wrap' }}>
               <div>
                 <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', color: 'var(--accent-slate)', fontWeight: 600, letterSpacing: '0.12em' }}>
                   02 // ENGINEER DOSSIER
                 </span>
-                <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(1.8rem, 3.8vw, 2.4rem)', fontWeight: 800, color: 'var(--text-primary)', marginTop: 2, letterSpacing: '-0.035em' }}>
+                <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(1.6rem, 3.5vw, 2.4rem)', fontWeight: 800, color: 'var(--text-primary)', marginTop: 2, letterSpacing: '-0.035em' }}>
                   Siva Prasad M L
                 </h2>
               </div>
@@ -88,25 +88,25 @@ export function AboutFlipCard({
             </div>
 
             {/* Academic Line */}
-            <div style={{ marginBottom: 20 }}>
-              <p style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: '1.05rem', color: 'var(--text-primary)' }}>
+            <div style={{ marginBottom: 16 }}>
+              <p style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 'clamp(0.95rem, 2vw, 1.05rem)', color: 'var(--text-primary)' }}>
                 Computer Science & Engineering
               </p>
-              <p style={{ fontSize: '0.88rem', color: 'var(--text-secondary)', marginTop: 2 }}>
+              <p style={{ fontSize: 'clamp(0.82rem, 1.8vw, 0.88rem)', color: 'var(--text-secondary)', marginTop: 2 }}>
                 College of Engineering Munnar · APJ Abdul Kalam Technological University
               </p>
             </div>
 
             {/* 2-Column Layout (Left Skills Chips, Right Terminal Widget) */}
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: 24, alignItems: 'start' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 20, alignItems: 'start' }}>
               {/* Left Column: Categorized Skill Chips */}
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
                 {skillCategories.map(cat => (
                   <div key={cat.title}>
-                    <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.68rem', color: 'var(--accent-slate)', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: 6, fontWeight: 600 }}>
+                    <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.68rem', color: 'var(--accent-slate)', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: 4, fontWeight: 600 }}>
                       {cat.title}
                     </p>
-                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
+                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: 5 }}>
                       {cat.chips.map(chip => (
                         <span key={chip} className="skill-chip">
                           {chip}
@@ -124,7 +124,7 @@ export function AboutFlipCard({
             </div>
           </div>
 
-          <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.7rem', color: 'var(--text-muted)', textAlign: 'right', marginTop: 16 }}>
+          <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.68rem', color: 'var(--text-muted)', textAlign: 'right', marginTop: 14 }}>
             CLICK DOSSIER TO FLIP PORTRAIT ↺
           </div>
         </div>
