@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 800" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0B0B0B" />
+      <stop offset="100%" stop-color="#161616" />
+    </linearGradient>
+    <linearGradient id="redAccent" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#B5121B" />
+      <stop offset="100%" stop-color="#D71920" />
+    </linearGradient>
+    <linearGradient id="goldGlow" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#C6A15B" stop-opacity="0.8" />
+      <stop offset="100%" stop-color="#8F713A" stop-opacity="0.2" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="600" height="800" fill="url(#bgGrad)" />
+
+  <!-- Geometric Frame Lines -->
+  <rect x="30" y="30" width="540" height="740" fill="none" stroke="url(#goldGlow)" stroke-width="1.5" rx="4" />
+  <rect x="44" y="44" width="512" height="712" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="1" rx="2" />
+
+  <!-- Avatar Silhouette Graphic -->
+  <g transform="translate(300, 360)">
+    <!-- Circle Aura -->
+    <circle cx="0" cy="-40" r="140" fill="none" stroke="url(#redAccent)" stroke-width="3" />
+    <circle cx="0" cy="-40" r="130" fill="none" stroke="#C6A15B" stroke-width="1" stroke-dasharray="6,6" />
+
+    <!-- Head & Shoulders Silhouette -->
+    <circle cx="0" cy="-75" r="70" fill="#E8E4D8" opacity="0.95" />
+    <path d="M-130,120 Q0,-10 130,120 Z" fill="#E8E4D8" opacity="0.95" />
+
+    <!-- Abstract Glasses Graphic -->
+    <rect x="-45" y="-90" width="35" height="22" rx="4" fill="none" stroke="#0B0B0B" stroke-width="4" />
+    <rect x="10" y="-90" width="35" height="22" rx="4" fill="none" stroke="#0B0B0B" stroke-width="4" />
+    <line x1="-10" y1="-80" x2="10" y2="-80" stroke="#0B0B0B" stroke-width="4" />
+  </g>
+
+  <!-- Overlay Branding Typography -->
+  <text x="300" y="640" font-family="'Space Grotesk', sans-serif" font-weight="700" font-size="32" fill="#F3F0E8" text-anchor="middle" letter-spacing="2">
+    SIVA PRASAD M L
+  </text>
+  <text x="300" y="680" font-family="'JetBrains Mono', monospace" font-weight="500" font-size="16" fill="#C6A15B" text-anchor="middle" letter-spacing="3">
+    SOFTWARE ENGINEER
+  </text>
+  <text x="300" y="715" font-family="'Inter', sans-serif" font-weight="400" font-size="13" fill="#8C877D" text-anchor="middle">
+    College of Engineering Munnar
+  </text>
+
+  <!-- Red Signature Accent Line -->
+  <line x1="180" y1="745" x2="420" y2="745" stroke="#B5121B" stroke-width="2" />
+</svg>
