@@ -1,112 +1,23 @@
-import { useState, useEffect } from 'react';
-import type { RoomObjectDefinition } from './data/room';
-import { SpaceEnvironment } from './components/space/SpaceEnvironment';
-import { SpaceInitOverlay } from './components/space-ui/SpaceInitOverlay';
-import { SpaceHint } from './components/space-ui/SpaceHint';
-import { ObjectFocusOverlay } from './components/space-ui/ObjectFocusOverlay';
-import { SpaceNavigation } from './components/space-ui/SpaceNavigation';
-import { ReturnToSpaceBtn } from './components/space-ui/ReturnToSpaceBtn';
-import { ProjectBookReader } from './components/book/ProjectBookReader';
-import { LaptopWorkspace } from './components/laptop/LaptopWorkspace';
-import { useBookReader } from './hooks/useBookReader';
-import { useLaptopWorkspace } from './hooks/useLaptopWorkspace';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { HomePage } from './pages/HomePage';
+import { ExperimentPage } from './pages/ExperimentPage';
+import './index.css';
 
-export function App() {
-  const [booting, setBooting] = useState<boolean>(true);
-  const [activeObject, setActiveObject] = useState<RoomObjectDefinition | null>(null);
-
-  const bookReader = useBookReader();
-  const laptopWorkspace = useLaptopWorkspace();
-
-  useEffect(() => {
-    // Check if session has already initialized space
-    const initialized = sessionStorage.getItem('siva_space_booted');
-    if (initialized) {
-      setBooting(false);
-    }
-  }, []);
-
-  const handleCompleteBoot = () => {
-    sessionStorage.setItem('siva_space_booted', 'true');
-    setBooting(false);
-  };
-
-  const handleFocusObject = (objDef: RoomObjectDefinition) => {
-    if (objDef.id === 'laptop') {
-      // If clicking the laptop, open the Laptop Code Workspace directly
-      laptopWorkspace.openWorkspace();
-      setActiveObject(null);
-    } else if (objDef.projectId) {
-      // If clicking a project book, open the Project Book Engine reader directly
-      bookReader.openBook(objDef.projectId);
-      setActiveObject(null);
-    } else {
-      setActiveObject(objDef);
-    }
-  };
-
-  const handleOpenBookFromFocus = (projectId: string) => {
-    setActiveObject(null);
-    bookReader.openBook(projectId);
-  };
-
-  const handleCloseFocus = () => {
-    setActiveObject(null);
-  };
-
+export default function App() {
   return (
-    <div className="relative w-full h-screen bg-[#0B0D10] text-[#E8E2D6] font-sans selection:bg-[#65B8FF]/20 selection:text-[#65B8FF] overflow-hidden select-none">
-      {/* 2.5D Room Environment */}
-      <SpaceEnvironment
-        onFocusObject={handleFocusObject}
-        activeObjectId={activeObject?.id || null}
-      />
-
-      {/* Interactive UI Layer 6 Overlays */}
-      <SpaceHint />
-
-      <SpaceNavigation
-        onSelectObject={handleFocusObject}
-        activeObjectId={activeObject?.id || null}
-      />
-
-      <ReturnToSpaceBtn
-        visible={activeObject !== null && bookReader.activeBook === null && !laptopWorkspace.isOpen}
-        onClick={handleCloseFocus}
-      />
-
-      <ObjectFocusOverlay
-        objectDef={activeObject}
-        onClose={handleCloseFocus}
-        onOpenBook={handleOpenBookFromFocus}
-      />
-
-      {/* Project Book Engine Notebook Reader */}
-      <ProjectBookReader
-        book={bookReader.activeBook}
-        currentPageIndex={bookReader.currentPageIndex}
-        turnDirection={bookReader.turnDirection}
-        onNext={bookReader.nextPage}
-        onPrev={bookReader.prevPage}
-        onClose={bookReader.closeBook}
-        onOpenCover={bookReader.nextPage}
-      />
-
-      {/* Laptop Code Workspace Modal Overlay */}
-      <LaptopWorkspace
-        isOpen={laptopWorkspace.isOpen}
-        selectedRepo={laptopWorkspace.selectedRepo}
-        onSelectRepo={laptopWorkspace.selectRepo}
-        onClose={laptopWorkspace.closeWorkspace}
-      />
-
-      {/* Boot Initialization Overlay */}
-      <SpaceInitOverlay
-        isOpen={booting}
-        onComplete={handleCompleteBoot}
-      />
-    </div>
+    <BrowserRouter>
+      <main id="main-content">
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/experiment/:id" element={<ExperimentPage />} />
+          <Route path="*" element={
+            <div style={{ minHeight: '60vh', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', gap: 16 }}>
+              <p style={{ fontFamily: 'var(--font-mono)', color: 'var(--text-muted)' }}>404 — Page not found</p>
+              <a href="/" className="btn btn--outline">← Return Home</a>
+            </div>
+          } />
+        </Routes>
+      </main>
+    </BrowserRouter>
   );
 }
-
-export default App;

@@ -56,11 +56,20 @@ export interface MlPipelineStep {
 export interface Project {
   id: string;
   title: string;
+  category: string;
   tier: 'featured' | 'additional';
   status: 'SHIPPED' | 'BUILDING' | 'ACTIVE' | 'COMPLETED';
   statusColor: string;
   tagline: string;
   summary: string;
+
+  // Editorial 4-Tier Stack Structure
+  user: string;
+  ux: string;
+  domain: string[];
+  system: string[];
+  backend: string[];
+
   problem: string;
   systemOverview: string;
   technologies: string[];
@@ -87,10 +96,16 @@ export const PROJECTS_DATA: Project[] = [
   {
     id: "krishi",
     title: "Krishi",
+    category: "AGRICULTURAL OPERATIONS PLATFORM",
     tier: "featured",
     status: "BUILDING",
     statusColor: "emerald",
     tagline: "Workflow-Driven Agricultural Operations & Event Backend",
+    user: "Farmers & Field Supervisors",
+    ux: "Task-first operational workflow with offline-friendly telemetry ingestion",
+    domain: ["CropCycleAggregate", "ParcelTelemetry", "DiseaseIncident", "RemedialAction"],
+    system: ["Spring Boot 3.x", "PostgreSQL", "FastAPI Microservice", "Docker"],
+    backend: ["REST Ingestion Gateway", "JWT Auth", "@Async Task Workers", "JPA EntityGraph", "Pydantic Schemas"],
     summary: "Workflow-driven agricultural operations platform featuring an event-driven backend service architecture, IoT telemetry processing, and integrated machine learning inference.",
     problem: "Agricultural operational management requires processing fragmented sensor telemetry, unpredictable supply chain workflows, and field recommendation queries in near real-time without blocking transactional database locks.",
     systemOverview: "Designed an event-driven backend architecture where high-throughput field data ingested via REST APIs is processed asynchronously by background worker routines, persisting aggregated states in PostgreSQL and decoupling ML advisory models behind FastAPI endpoints.",
@@ -192,10 +207,16 @@ export const PROJECTS_DATA: Project[] = [
   {
     id: "careerpath",
     title: "CareerPath",
+    category: "JOB APPLICATION WORKFLOW PLATFORM",
     tier: "featured",
     status: "SHIPPED",
     statusColor: "indigo",
     tagline: "Relational Job Application & Milestone Tracking System",
+    user: "Job Seekers & Candidates",
+    ux: "Kanban milestone board with deterministic status progression",
+    domain: ["ApplicationAggregate", "InterviewRound", "StateAuditLog", "OfferSalarySpec"],
+    system: ["Spring Boot 3.x", "Spring Security", "PostgreSQL", "React"],
+    backend: ["Finite State Machine", "@Transactional Boundary", "Stateless JWT Auth", "JPA Interface Projections"],
     summary: "Comprehensive job application and interview workflow tracking platform built on relational data models, status transition logic, and state audit history.",
     problem: "Job seekers manage multiple concurrent application pipelines with varying stages, interview rounds, and follow-up deadlines, often suffering from state synchronization issues and lack of structured analytics.",
     systemOverview: "Architected a relational database schema mapping candidate entities to application state transitions, enforcing deterministic state progression through Spring Boot service boundaries and relational foreign key constraints.",
@@ -289,10 +310,16 @@ export const PROJECTS_DATA: Project[] = [
   {
     id: "realestatehub",
     title: "Real Estate Hub",
+    category: "PROPERTY MARKETPLACE PLATFORM",
     tier: "featured",
     status: "SHIPPED",
     statusColor: "indigo",
     tagline: "Full-Stack Property Marketplace with RBAC & REST APIs",
+    user: "Buyers, Agents & Administrators",
+    ux: "Role-tailored interfaces with multi-criteria dynamic property search",
+    domain: ["PropertyListing", "AgentProfile", "BuyerInquiry", "PermissionRole"],
+    system: ["Spring Boot 3.x", "PostgreSQL", "Docker Compose", "React / Vite"],
+    backend: ["Method-Level @PreAuthorize", "JPA Specification Criteria", "Join Table Mapping", "REST Endpoints"],
     summary: "Full-stack property management and real estate marketplace platform featuring fine-grained role-based access control, search filtering, and property listing lifecycle management.",
     problem: "Real estate portals must handle multi-tenant roles (buyers, sellers, agents, admins) while delivering fast multi-faceted property searches over large datasets without exposing administrative management endpoints.",
     systemOverview: "Built a production-ready REST API backend with Spring Boot and Spring Security, backed by PostgreSQL for transactional listing management, paired with a modern React frontend for property exploration and admin controls.",
@@ -362,10 +389,16 @@ export const PROJECTS_DATA: Project[] = [
   {
     id: "avis",
     title: "Avis",
+    category: "ASYNC AI TASK PIPELINE",
     tier: "additional",
     status: "BUILDING",
     statusColor: "sky",
     tagline: "Asynchronous AI Personal Assistant & Task Pipeline",
+    user: "Productivity Apps & Async API Clients",
+    ux: "Non-blocking task dispatch with 202 Accepted status polling",
+    domain: ["AssistantTask", "PromptContextFrame", "ModelProviderRouter", "SynthesisResult"],
+    system: ["Python FastAPI", "Uvicorn", "Asyncio Task Queue", "Docker"],
+    backend: ["Async BackgroundTasks", "httpx Async HTTP", "Pydantic Schema Validation", "Circuit Breaker Retry"],
     summary: "AI-powered personal assistant backend designed to execute asynchronous multi-step task workflows and model response synthesis.",
     problem: "Integrating natural language models into personal productivity software often suffers from long latency spikes and unhandled API timeouts when calling external LLM providers.",
     systemOverview: "Constructed an asynchronous task pipeline utilizing Python FastAPI and queue execution abstractions, isolating external LLM inference requests from the primary execution thread.",
@@ -455,10 +488,16 @@ export const PROJECTS_DATA: Project[] = [
   {
     id: "ruralinfra",
     title: "Rural Infrastructure Classification",
+    category: "ML DATASET & CLASSIFICATION PIPELINE",
     tier: "additional",
     status: "COMPLETED",
     statusColor: "indigo",
     tagline: "Machine Learning Dataset Preparation & Model Classification",
+    user: "GIS Researchers & Remote Sensing Analysts",
+    ux: "Classification confidence report with spatial tile boundaries",
+    domain: ["SpatialTile", "InfrastructureTag", "NormalizedTensor", "ConfusionMatrix"],
+    system: ["Python", "TensorFlow 2.x", "Keras API", "OpenCV / NumPy"],
+    backend: ["MinMax Feature Scaling", "Data Augmentation Pipeline", "CNN Classification Model", "Scikit-Learn Metrics"],
     summary: "Machine learning dataset preparation, feature extraction, and neural network classification project analyzing imagery and spatial infrastructure data.",
     problem: "Classifying rural infrastructure from remote sensing datasets requires structured feature extraction pipelines and model validation to handle spatial noise.",
     systemOverview: "Constructed a machine learning classification pipeline using Python, TensorFlow, and Keras for dataset normalization, model training, and performance metrics evaluation.",

@@ -1,0 +1,19 @@
+{
+  "name": "Siva Prasad M L",
+  "handle": "Sivaprasad2k",
+  "role": "Backend Engineering · Systems · AI",
+  "education": "B.Tech Computer Science & Engineering",
+  "college": "College of Engineering Munnar",
+  "location": "Kerala, India",
+  "status": "Final Year Student",
+  "experiments": 5,
+  "skills": ["Java", "Spring Boot", "Spring Security", "PostgreSQL", "FastAPI", "Python", "React", "TypeScript", "Docker", "TensorFlow"],
+  "currentlyBuilding": "Krishi — Agricultural Operations Backend",
+  "currentlyLearning": "System Design · Distributed Systems · ML Inference",
+  "availability": "Open to backend engineering roles",
+  "github": "https://github.com/Sivaprasad2k",
+  "linkedin": "https://www.linkedin.com/in/sivaprasadml",
+  "contact": "sivaprasadml2k5@gmail.com",
+  "apiVersion": "1.0",
+  "lastUpdated": "2026-08-16"
+}

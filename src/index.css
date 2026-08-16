@@ -1,41 +1,251 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;1,400&display=swap');
 
-@layer base {
-  html {
-    color-scheme: dark;
-    scroll-behavior: smooth;
-  }
+/* ─── Design Tokens (Swiss-Brutalist Paper Canvas) ─── */
+:root {
+  --bg-primary:     #F5F2EB;
+  --bg-surface:     #EAE5DA;
+  --bg-elevated:    #FFFFFF;
+  --bg-dark:        #121212;
+  --bg-dark-deep:   #0A0A0A;
 
-  body {
-    @apply bg-[#070a0f] text-slate-100 font-sans antialiased selection:bg-sky-500/20 selection:text-sky-300 min-h-screen margin-0 padding-0;
-  }
+  --text-primary:   #121212;
+  --text-secondary: #5A5852;
+  --text-muted:     #8C8880;
 
-  /* Custom scrollbar for technical dashboard feel */
-  ::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
-  }
+  /* Industrial Red Accent */
+  --accent-red:     #D32F2F;
+  --accent-red-bright: #E53935;
+  --accent-red-subtle: rgba(211, 47, 47, 0.08);
 
-  ::-webkit-scrollbar-track {
-    background: #070a0f;
-  }
+  /* Refined Slate Gray for Monospace Labels (Replaced harsh blue) */
+  --accent-slate:   #4A5568;
+  --accent-slate-subtle: rgba(74, 85, 104, 0.08);
 
-  ::-webkit-scrollbar-thumb {
-    background: #1e293b;
-    border-radius: 4px;
-  }
+  /* Muted Metallic Gold Highlight */
+  --accent-gold:    #C8A24A;
+  --accent-gold-subtle: rgba(200, 162, 74, 0.12);
 
-  ::-webkit-scrollbar-thumb:hover {
-    background: #334155;
+  --border:         rgba(18, 18, 18, 0.12);
+  --border-strong:  rgba(18, 18, 18, 0.28);
+  --border-red:     rgba(211, 47, 47, 0.35);
+  --border-slate:   rgba(74, 85, 104, 0.3);
+
+  --font-display:   'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-body:      'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono:      'JetBrains Mono', monospace;
+
+  --radius-sm:  2px;
+  --radius-md:  4px;
+
+  /* Fluid Spacing Scale System */
+  --container-padding: clamp(16px, 3.5vw, 48px);
+  --space-8:   8px;
+  --space-16:  16px;
+  --space-24:  24px;
+  --space-32:  32px;
+  --space-48:  48px;
+
+  --transition-fast: 140ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-base: 240ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-3d:   500ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ─── Reduced Motion ─────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }
 
-/* Background Technical Grid Pattern */
-.bg-grid-pattern {
-  background-size: 32px 32px;
-  background-image: 
-    linear-gradient(to right, rgba(30, 41, 59, 0.25) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(30, 41, 59, 0.25) 1px, transparent 1px);
+/* ─── Reset & Base ───────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  scroll-behavior: smooth;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  color-scheme: light;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* ─── Typography ─────────────────────────────────────── */
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.035em;
+  color: var(--text-primary);
+}
+
+code, pre, .mono {
+  font-family: var(--font-mono);
+}
+
+a { color: inherit; text-decoration: none; }
+
+::selection {
+  background: var(--accent-red-subtle);
+  color: var(--accent-red);
+}
+
+/* ─── Focus Ring ─────────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid var(--accent-red);
+  outline-offset: 3px;
+}
+
+/* ─── Spatial Layer System & Container ────────────────── */
+.spatial-wrapper {
+  position: relative;
+  width: 100%;
+  perspective: 1200px;
+}
+
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 var(--container-padding);
+}
+
+/* ─── CSS 3D Flip Card Utilities ─────────────────────── */
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.preserve-3d {
+  transform-style: preserve-3d;
+}
+
+.backface-hidden {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.rotate-y-180 {
+  transform: rotateY(180deg);
+}
+
+/* ─── Buttons & CTAs ─────────────────────────────────── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 20px;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.85rem;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  text-decoration: none;
+  white-space: nowrap;
+}
+.btn--primary {
+  background: var(--accent-red);
+  color: #FFFFFF;
+}
+.btn--primary:hover {
+  background: var(--accent-red-bright);
+}
+.btn--outline {
+  background: transparent;
+  color: var(--text-primary);
+  border-color: var(--border-strong);
+}
+.btn--outline:hover {
+  border-color: var(--accent-red);
+  color: var(--accent-red);
+  background: var(--accent-red-subtle);
+}
+
+/* ─── Section Labels & Subtitles ─────────────────────── */
+.label-editorial {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent-slate);
+  margin-bottom: var(--space-8);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.section-headline {
+  font-size: clamp(2rem, 4.5vw, 3.5rem);
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-bottom: var(--space-16);
+  letter-spacing: -0.035em;
+}
+
+.section-desc {
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+  line-height: 1.65;
+  max-width: 640px;
+}
+
+/* ─── Categorized Skill Chips ────────────────────────── */
+.skill-chip {
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  padding: 4px 10px;
+  border-radius: 2px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 140ms ease;
+}
+.skill-chip:hover {
+  border-color: var(--accent-red);
+  color: var(--accent-red);
+  background: var(--accent-red-subtle);
+}
+
+/* ─── Key-Value Row ──────────────────────────────────── */
+.kv-row {
+  display: grid;
+  grid-template-columns: 130px 1fr;
+  gap: var(--space-16);
+  padding: var(--space-16) 0;
+  border-bottom: 1px solid var(--border);
+  align-items: baseline;
+}
+.kv-row:last-child { border-bottom: none; }
+.kv-label {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+.kv-value {
+  font-size: 0.92rem;
+  color: var(--text-primary);
+  line-height: 1.6;
+}
+
+/* ─── Responsive Media Queries ───────────────────────── */
+@media (max-width: 900px) {
+  .container { padding: 0 var(--container-padding); }
+  .kv-row { grid-template-columns: 100px 1fr; }
 }

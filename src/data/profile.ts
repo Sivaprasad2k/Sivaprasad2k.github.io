@@ -9,7 +9,7 @@ export interface Profile {
   email: string;
   github: string;
   linkedin: string;
-  instagram: string;
+  resumePdf: string;
   heroQuote: string;
   bio: string;
   supportingMessage: string;
@@ -28,18 +28,18 @@ export interface Profile {
 export const PROFILE_DATA: Profile = {
   name: "Siva Prasad M L",
   handle: "Sivaprasad2k",
-  role: "BACKEND ENGINEERING",
-  subRole: "SYSTEMS · DATA · AI",
+  role: "Backend / Software Engineer",
+  subRole: "Java · Spring Boot · PostgreSQL · Python/FastAPI",
   location: "India",
   status: "SYSTEM OPERATIONAL",
-  availability: "Available for Systems & Backend Engineering Roles",
+  availability: "Available for Backend & Software Engineering Roles",
   email: "sivaprasadml2k5@gmail.com",
   github: "https://github.com/Sivaprasad2k",
   linkedin: "https://www.linkedin.com/in/sivaprasadml",
-  instagram: "https://instagram.com/sivaprasad2k", // Configured social placeholder
-  heroQuote: "I build production software where domain rules, data models and failure behaviour matter.",
-  bio: "Computer Science & Engineering student focused on backend engineering with Java and Spring Boot. I design across the stack when necessary, with particular emphasis on RESTful API design, relational data modeling, security, and backend reliability. Active learner exploring system design concepts and AI engineering integration.",
-  supportingMessage: "I design and build production software with a focus on backend systems, transactional reliability, domain-driven architectures, and reliable software engineering.",
+  resumePdf: "/resume.pdf",
+  heroQuote: "I build backend systems and software products with Java, Spring Boot, PostgreSQL and Python.",
+  bio: "Software engineer focused on backend systems, relational database architecture, security boundaries, and async task processing. Building software where domain rules, data models, and failure behavior matter.",
+  supportingMessage: "Focused on backend systems engineering, transactional reliability, and software craftsmanship.",
   
   corePrinciples: [
     {

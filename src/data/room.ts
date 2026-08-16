@@ -5,11 +5,6 @@ export type RoomObjectType =
   | 'poster-careerpath'
   | 'poster-realestate'
   | 'laptop'
-  | 'book-krishi'
-  | 'book-careerpath'
-  | 'book-realestate'
-  | 'book-avis'
-  | 'book-ruralinfra'
   | 'whiteboard'
   | 'poster-linkedin'
   | 'poster-instagram'
@@ -136,39 +131,6 @@ export const ROOM_OBJECTS_DATA: RoomObjectDefinition[] = [
     metaphorResponse: 'Contact plaque illuminated → Direct inquiry panel'
   },
   {
-    id: 'book-krishi',
-    title: 'Krishi Engine',
-    categoryLabel: 'BUILD',
-    subtitle: 'Agricultural Operations & Event Backend (2024)',
-    layer: 2,
-    position: { x: 26, y: 38, rotation: 0, isStanding: true, surfaceAnchor: 'riser' },
-    interactive: true,
-    metaphorResponse: 'Book lifts & opens → Crop Cycle Workflow notebook',
-    projectId: 'krishi'
-  },
-  {
-    id: 'book-careerpath',
-    title: 'CareerPath Engine',
-    categoryLabel: 'BUILD',
-    subtitle: 'Relational Application & Milestone Tracker (2024)',
-    layer: 2,
-    position: { x: 32, y: 38, rotation: 0, isStanding: true, surfaceAnchor: 'riser' },
-    interactive: true,
-    metaphorResponse: 'Book lifts & opens → Application State Machine notebook',
-    projectId: 'careerpath'
-  },
-  {
-    id: 'book-realestate',
-    title: 'Real Estate Hub',
-    categoryLabel: 'BUILD',
-    subtitle: 'Property Marketplace with Fine-Grained RBAC (2024)',
-    layer: 2,
-    position: { x: 38, y: 38, rotation: 0, isStanding: true, surfaceAnchor: 'riser' },
-    interactive: true,
-    metaphorResponse: 'Book lifts & opens → RBAC Role Permission notebook',
-    projectId: 'realestatehub'
-  },
-  {
     id: 'laptop',
     title: 'Workstation Laptop',
     categoryLabel: 'GITHUB',
@@ -177,28 +139,6 @@ export const ROOM_OBJECTS_DATA: RoomObjectDefinition[] = [
     position: { x: 50, y: 48, rotation: 0, surfaceAnchor: 'desktop' },
     interactive: true,
     metaphorResponse: 'Screen brightens → Workspace activation & repository codebases'
-  },
-  {
-    id: 'book-avis',
-    title: 'Avis AI Assistant',
-    categoryLabel: 'SYSTEM EXPERIMENT',
-    subtitle: 'Asynchronous Task Pipeline (2025)',
-    layer: 3,
-    position: { x: 68, y: 56, rotation: -2, isStanding: false, surfaceAnchor: 'desktop' },
-    interactive: true,
-    metaphorResponse: 'Book lifts & opens → Async Request Pipeline notebook',
-    projectId: 'avis'
-  },
-  {
-    id: 'book-ruralinfra',
-    title: 'Rural Infrastructure',
-    categoryLabel: 'DATA PROJECT',
-    subtitle: 'ML Dataset Preprocessing & Model (2024)',
-    layer: 3,
-    position: { x: 80, y: 56, rotation: 2, isStanding: false, surfaceAnchor: 'desktop' },
-    interactive: true,
-    metaphorResponse: 'Book lifts & opens → ML Dataset Pipeline notebook',
-    projectId: 'ruralinfra'
   },
   {
     id: 'phone',
@@ -221,4 +161,5 @@ export const ROOM_OBJECTS_DATA: RoomObjectDefinition[] = [
     metaphorResponse: 'LED indicators pulse → Systems & Stack panel'
   }
 ];
+
 
